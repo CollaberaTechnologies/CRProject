@@ -1,0 +1,72 @@
+-----------Exception Details on  11/2/2018 11:50:19 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 11/2/2018 11:50:19 AM
+
+Error Line No : ine 620
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:57276/Clients/Client
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  11/2/2018 11:54:42 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 11/2/2018 11:54:42 AM
+
+Error Line No : ine 620
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:57276/Clients/Client
+
+User Host IP: 
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  11/2/2018 12:08:58 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 11/2/2018 12:08:58 PM
+
+Error Line No : ine 621
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:57276/Clients/Client
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+

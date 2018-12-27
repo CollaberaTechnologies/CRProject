@@ -1,0 +1,407 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <title>RSI Test</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS Global Compulsory-->
+    <link href="APP Form/bootstrap.min.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="/sites/spin/IB/hr/Style%20Library/sweetalert.css">-->
+    <link href="APP Form/sweetalert.css" rel="stylesheet" />
+    <link href="APP Form/style.css" rel="stylesheet" />
+    <link href="APP Form/header1.css" rel="stylesheet" />
+    <link href="APP Form/responsive.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- CSS Implementing Plugins -->
+    <link href="APP Form/font-awesome.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Play">
+    <!-- Bulletin Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <!-- Heading Text Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+    <!-- Body Text Fonts -->
+    <!-- CSS Theme -->
+    <link href="APP Form/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="APP Form/easy-autocomplete.css" rel="stylesheet" />
+    <link href="APP Form/styletheme.css" rel="stylesheet" id="style_color" />
+    <link href="APP Form/bootstrap-tagsinput.css" rel="stylesheet" />
+    <style>
+        .box h3,
+        .quecat {
+            text-align: center
+        }
+
+        .panel {
+            counter-reset: section
+        }
+
+        .panel-body ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .panel-body li.block-count {
+            position: relative;
+        }
+
+            .panel-body li.block-count span.delete {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+                .panel-body li.block-count span.delete i {
+                    position: absolute;
+                    color: brown;
+                    font-size: 20px;
+                    cursor: pointer;
+                    top: 5px;
+                    right: 10px;
+                }
+
+            .panel-body li.block-count:before {
+                counter-increment: section;
+                content: counter(section) " : ";
+                display: block;
+                font-weight: 600;
+                margin-left: 0;
+                background: #eaeaea;
+                padding: 5px 10px;
+                margin-bottom: 5px;
+            }
+
+        .panel-title {
+            color: #fff
+        }
+
+        a.panel-title,
+        a.panel-title:focus,
+        a.panel-title:hover,
+        a.panel-title:visited {
+            text-decoration: none
+        }
+
+        .queContainer {
+            margin-bottom: 20px
+        }
+
+        .reqfield {
+            color: red
+        }
+
+        .custcontainercol10,
+        .custcontainercol6,
+        .custcontainercol8,
+        .custcontainercol9 {
+            float: none !important;
+            margin-right: auto !important;
+            margin-left: auto !important
+        }
+
+        .quecat {
+            padding: 0;
+            margin: 0;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 22px;
+            width: 80px;
+            background-color: #585858;
+            border-left: 10px solid #26CAD3
+        }
+
+        label.cust-title {
+            font-weight: 400;
+            background: 0 0;
+            float: left;
+            font-size: 14px;
+            padding: 5px 0 5px 5px;
+            width: 100%;
+            margin-bottom: 0
+        }
+
+            label.cust-title label {
+                margin-right: 15px;
+                font-weight: 400
+            }
+
+                label.cust-title label input {
+                    margin-right: 3px
+                }
+
+        .k-notification-error.k-group {
+            background: rgba(100%, 0%, 0%, .7);
+            color: #fff;
+            background-color: #AFF
+        }
+
+        .wrong-pass {
+            width: 300px;
+            height: auto
+        }
+
+            .wrong-pass h3 {
+                font-size: 1em;
+                padding: 15px 22px 5px
+            }
+
+            .wrong-pass img {
+                float: left;
+                margin: 30px 15px 30px 30px
+            }
+
+        span.vertical-line {
+            width: 1px;
+            background-color: silver;
+            height: 100%;
+            border: 2px ridge silver;
+            border-radius: 2px
+        }
+
+        .box {
+            width: 45%;
+            height: auto;
+            background: #FFF;
+            margin: 40px auto;
+            padding: 40px 0
+        }
+
+        @media screen and (max-width:768px) {
+            .box {
+                width: 70%
+            }
+        }
+
+        @media screen and (max-width:414px) {
+            .box {
+                width: 90%
+            }
+        }
+
+        @media screen and (max-width:375px) {
+            .box {
+                width: 70%
+            }
+        }
+
+        @media screen and (max-width:320px) {
+            .box {
+                width: 90%
+            }
+        }
+
+        .effect8 {
+            position: relative;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .3), 0 0 40px rgba(0, 0, 0, .1) inset
+        }
+
+            .effect8:after,
+            .effect8:before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                box-shadow: 0 0 20px rgba(0, 0, 0, .8);
+                top: 10px;
+                bottom: 10px;
+                left: 0;
+                right: 0;
+                border-radius: 100px/10px
+            }
+
+            .effect8:after {
+                right: 10px;
+                left: auto;
+                transform: skew(8deg) rotate(3deg)
+            }
+
+        .box h3 {
+            position: relative;
+            top: 80px
+        }
+
+        .box h1 {
+            margin: 20px 0
+        }
+
+        h2 {
+            color: red
+        }
+
+        .sweet-alert .sa-icon {
+            width: 80px;
+            height: 80px;
+            border: 4px solid gray;
+            border-radius: 50%;
+            margin: 20px auto 30px;
+            position: relative;
+            box-sizing: content-box
+        }
+
+        .country-img {
+            display: block;
+            position: relative;
+            margin: 10px 20px;
+            cursor: pointer;
+            z-index: 11;
+            border: 3px solid #fff;
+            box-shadow: 0 0 14px 4px rgba(185, 185, 185, 0.57);
+            ;
+        }
+
+            .country-img img {
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .country-img p.caption {
+                position: relative;
+                display: block;
+                width: 100%;
+                text-align: center;
+                background: #009bde;
+                /* left: 0;
+            bottom: -100px; */
+                padding: 10px 0;
+                transition: .3s all ease-in-out
+            }
+
+            .country-img p.caption {
+                color: #fff;
+                margin-bottom: 0;
+                font-size: 16px
+            }
+
+        .form-control.k-widget {
+            padding: 0;
+            width: 100%;
+        }
+
+        /* .country-img:hover .caption {
+            bottom: 0
+        } */
+        .bootstrap-tagsinput {
+            max-width: unset;
+            width: 100%;
+            font-family: 'Roboto', sans-serif
+        }
+
+        .radio-grp h4 {
+            margin-left: 20px;
+            font-family: 'Roboto',sans-serif;
+            font-size: 15px;
+        }
+
+            .radio-grp h4 input[type="radio"] {
+                margin: 2px 5px 2px;
+            }
+
+        .datepicker > div {
+            display: unset;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="notification" style="display: none;"></span>
+    <!-- Container Starts -->
+    <div style="padding-top:10%" id="entitySelection">
+        <div class="box effect8" style="text-align: center; vertical-align: middle;">
+            <div class="col-md-12">
+                <h1>Select Entity</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="country-img">
+                            <div id="nezdaLogo">
+                                <img src="/sites/spin/IB/PublishingImages/Philippines.jpg" />
+                                <p class="text-center caption">Philippines</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="country-img">
+                            <div id="collaberaLogo">
+                                <img src="/sites/spin/IB/PublishingImages/India.jpg" />
+                                <p class="text-center caption">India</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="container" style="display:none;margin-bottom:40px;">
+        <div class="row custmrgn-top15">
+            <div class="col-md-8 custcontainercol8">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-blue">
+                        <div class="panel-heading" style="height: 50px;">
+                            <h3 class="panel-title" style="width: 50%; float: left; display: block; font-size: 22px;">Application Form</h3>
+                            <img id="companyLogo" src="" style="float: right; width:60px;" />
+                        </div>
+                        <div class="panel-body">
+                            
+                        </div>
+                        <div class="panel-footer text-center">
+                            <button id="btnBack" type="button" class="btn-u btn-u-blue">Back</button>
+                            <button id="btnSave" type="button" class="btn-u btn-u-blue">Submit</button>
+                            <button id="btnClearControls" type="button" class="btn-u btn-u-blue">Clear Controls</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ResumePDF"></div>
+
+    <!-- JS Global Compulsory -->
+    <script src="APP Form/js/jquery.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <script type="text/javascript" src="/sites/spin/SiteAssets/SPINJavaScript/jquery.SPServices.js"></script>
+    <script src="APP Form/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="APP Form/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--<script src="/sites/spin/IB/hr/SiteAssets/sweetalert.min.js"></script>-->
+    <script src="APP Form/js/sweetalert.js" type="text/javascript"></script>
+    <script src="APP Form/js/hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="APP Form/js/back-to-top.js" type="text/javascript"></script>
+    <script src="APP Form/js/bootstrap-tagsinput.js" type="text/javascript"></script>
+    <!-- JS Page Level -->
+    <script src="APP Form/js/app.js" type="text/javascript"></script>
+    <link href="APP Form/kendo.common.min.css" rel="stylesheet" />
+    <link href="APP Form/kendo.default.min.css" rel="stylesheet" />
+    <script src="APP Form/js/kendo.all.min.js"></script>
+    <script src="APP Form/js/jszip.min.js"></script>
+    <script src="APP Form/js/jquery.easy-autocomplete.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.0/jspdf.min.js"></script>
+    <script src="APP Form/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="APP Form/js/CAF.js??ver=16"></script>
+    <script id="errorTemplate" type="text/x-kendo-template">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#txtlanguage').tagsinput({
+                tagClass: 'big'
+            });
+
+            $(".date-picker").datepicker({
+                orientation: "right",
+                autoclose: !0,
+                format: 'mm/dd/yyyy'
+            });
+        })
+    </script>
+
+</body>
+</html>

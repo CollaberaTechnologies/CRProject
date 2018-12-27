@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="IHD_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Edu_Background">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resid" Type="bigint" />
+          <Property Name="course" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Yrgraduated" Type="nvarchar(max)" />
+          <Property Name="SchoolUniversity" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Othertrainings" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IHD_CR">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Position" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="200" />
+          <Property Name="MailStatus" Type="nvarchar" MaxLength="200" />
+          <Property Name="ResponseDate" Type="datetime" />
+          <Property Name="CandidateStatus" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="IHD_TABDOCS">
+          <Key>
+            <PropertyRef Name="Rid" />
+          </Key>
+          <Property Name="Rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRID" Type="bigint" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContentType" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Data" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="IHD_Tabusers">
+          <Key>
+            <PropertyRef Name="RID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="EmailID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LocationID" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bigint" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IHD_USER_MAIN">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="bigint" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salutation" Type="smallint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="25" />
+          <Property Name="DivisionID" Type="bigint" Nullable="false" />
+          <Property Name="LocationID" Type="bigint" Nullable="false" />
+          <Property Name="RightsID" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bigint" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamID" Type="bigint" />
+          <Property Name="AccessRights" Type="bigint" />
+          <Property Name="ReportsTo" Type="bigint" />
+          <Property Name="AccessLevel" Type="ntext" />
+          <Property Name="AccessType" Type="smallint" />
+          <Property Name="ISRecruiter" Type="smallint" />
+          <Property Name="ISTeamLeader" Type="smallint" />
+          <Property Name="ISOpManager" Type="smallint" />
+          <Property Name="ISBuManager" Type="smallint" />
+          <Property Name="ISHRManager" Type="smallint" />
+          <Property Name="ISTopManager" Type="smallint" />
+          <Property Name="ISPartner" Type="smallint" Nullable="false" />
+          <Property Name="InProcessNotification" Type="smallint" Nullable="false" />
+          <Property Name="ResumeNotification" Type="smallint" Nullable="false" />
+          <Property Name="BlockedResumeNotification" Type="smallint" Nullable="false" />
+          <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+          <Property Name="CreatedUserID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ADSUserID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="bigint" Nullable="false" />
+          <Property Name="EmployeeID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="InvoiceLocID" Type="bigint" Nullable="false" />
+          <Property Name="V5RID" Type="bigint" />
+          <Property Name="pswd" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="personal_data">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contactperson" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="expsalary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Availonboard" Type="date" />
+          <Property Name="Datetimetomeet" Type="datetime" />
+          <Property Name="Posdesire" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Preferloc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CurrentCTC" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Placetomeet" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar(max)" />
+          <Property Name="Phone " Type="nvarchar(max)" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Dob" Type="date" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Maritalstatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FLAG" Type="bit" />
+          <Property Name="Created_Date" Type="datetime" />
+          <Property Name="Modified_Date" Type="datetime" />
+          <Property Name="Created_User" Type="nvarchar(max)" />
+          <Property Name="Modified_User" Type="nvarchar(max)" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="LanguagesKnown" Type="nvarchar(max)" />
+          <Property Name="Careeraspirations" Type="nvarchar(max)" />
+          <Property Name="strengthsandweakness" Type="nvarchar(max)" />
+          <Property Name="HowKnowAboutCollabera" Type="nvarchar(max)" />
+          <Property Name="WhatKnownAboutCollabera" Type="nvarchar(max)" />
+          <Property Name="EmailId" Type="nvarchar(max)" />
+          <Property Name="CRRID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Recent_Employeer">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="position" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="company" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fromdate" Type="date" Nullable="false" />
+          <Property Name="todate" Type="date" Nullable="false" />
+          <Property Name="skills" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="resid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="relationship" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactno" Type="nvarchar(max)" />
+          <Property Name="resid" Type="bigint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USER_LIST_TEST">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salutation" Type="smallint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="25" />
+          <Property Name="LocationID" Type="bigint" Nullable="false" />
+          <Property Name="Status" Type="bigint" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedUserID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedUserID" Type="bigint" Nullable="false" />
+          <Property Name="Gender" Type="bigint" Nullable="false" />
+          <Property Name="DOB" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__IHD_TABDOC__PRID__5224328E">
+          <End Role="personal_data" Type="Self.personal_data" Multiplicity="1" />
+          <End Role="IHD_TABDOCS" Type="Self.IHD_TABDOCS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_data">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="IHD_TABDOCS">
+              <PropertyRef Name="PRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="IHD_DBModelStoreContainer">
+          <EntitySet Name="Edu_Background" EntityType="Self.Edu_Background" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IHD_CR" EntityType="Self.IHD_CR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IHD_TABDOCS" EntityType="Self.IHD_TABDOCS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IHD_USER_MAIN" EntityType="Self.IHD_USER_MAIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personal_data" EntityType="Self.personal_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recent_Employeer" EntityType="Self.Recent_Employeer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reference" EntityType="Self.Reference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_LIST_TEST" EntityType="Self.USER_LIST_TEST" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IHD_Tabusers" EntityType="Self.IHD_Tabusers" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IHD_Tabusers].[RID] AS [RID], 
+    [IHD_Tabusers].[UserName] AS [UserName], 
+    [IHD_Tabusers].[FirstName] AS [FirstName], 
+    [IHD_Tabusers].[LastName] AS [LastName], 
+    [IHD_Tabusers].[LocationID] AS [LocationID], 
+    [IHD_Tabusers].[Status] AS [Status], 
+    [IHD_Tabusers].[EmailID] AS [EmailID]
+    FROM [dbo].[IHD_Tabusers] AS [IHD_Tabusers]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__IHD_TABDOC__PRID__5224328E" Association="Self.FK__IHD_TABDOC__PRID__5224328E">
+            <End Role="personal_data" EntitySet="personal_data" />
+            <End Role="IHD_TABDOCS" EntitySet="IHD_TABDOCS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IHD_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="IHD_USER_MAIN">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int64" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int16" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="DivisionID" Type="Int64" Nullable="false" />
+          <Property Name="LocationID" Type="Int64" Nullable="false" />
+          <Property Name="RightsID" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Int64" Nullable="false" />
+          <Property Name="EmailID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamID" Type="Int64" />
+          <Property Name="AccessRights" Type="Int64" />
+          <Property Name="ReportsTo" Type="Int64" />
+          <Property Name="AccessLevel" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccessType" Type="Int16" />
+          <Property Name="ISRecruiter" Type="Int16" />
+          <Property Name="ISTeamLeader" Type="Int16" />
+          <Property Name="ISOpManager" Type="Int16" />
+          <Property Name="ISBuManager" Type="Int16" />
+          <Property Name="ISHRManager" Type="Int16" />
+          <Property Name="ISTopManager" Type="Int16" />
+          <Property Name="ISPartner" Type="Int16" Nullable="false" />
+          <Property Name="InProcessNotification" Type="Int16" Nullable="false" />
+          <Property Name="ResumeNotification" Type="Int16" Nullable="false" />
+          <Property Name="BlockedResumeNotification" Type="Int16" Nullable="false" />
+          <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedUserID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ADSUserID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ModifiedUserID" Type="Int64" Nullable="false" />
+          <Property Name="EmployeeID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InvoiceLocID" Type="Int64" Nullable="false" />
+          <Property Name="V5RID" Type="Int64" />
+          <Property Name="pswd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="IHD_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="IHD_USER_MAIN" EntityType="Self.IHD_USER_MAIN" />
+          <EntitySet Name="IHD_CR" EntityType="IHD_DBModel.IHD_CR" />
+          <EntitySet Name="Edu_Background" EntityType="IHD_DBModel.Edu_Background" />
+          <EntitySet Name="Recent_Employeer" EntityType="IHD_DBModel.Recent_Employeer" />
+          <EntitySet Name="sysdiagrams" EntityType="IHD_DBModel.sysdiagram" />
+          <EntitySet Name="USER_LIST_TEST" EntityType="IHD_DBModel.USER_LIST_TEST" />
+          <EntitySet Name="IHD_Tabusers" EntityType="IHD_DBModel.IHD_Tabusers" />
+          <EntitySet Name="personal_data" EntityType="IHD_DBModel.personal_data" />
+          <EntitySet Name="IHD_TABDOCS" EntityType="IHD_DBModel.IHD_TABDOCS" />
+          <AssociationSet Name="FK__IHD_TABDOC__PRID__5224328E" Association="IHD_DBModel.FK__IHD_TABDOC__PRID__5224328E">
+            <End Role="personal_data" EntitySet="personal_data" />
+            <End Role="IHD_TABDOCS" EntitySet="IHD_TABDOCS" />
+          </AssociationSet>
+          <EntitySet Name="References" EntityType="IHD_DBModel.Reference" />
+        </EntityContainer>
+        <EntityType Name="IHD_CR">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MailStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ResponseDate" Type="DateTime" Precision="3" />
+          <Property Name="CandidateStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Edu_Background">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resid" Type="Int64" />
+          <Property Name="course" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Yrgraduated" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolUniversity" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Othertrainings" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Recent_Employeer">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="position" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="company" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fromdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="todate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="skills" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="resid" Type="Int64" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER_LIST_TEST">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="Int16" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Int64" Nullable="false" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedUserID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedUserID" Type="Int64" Nullable="false" />
+          <Property Name="Gender" Type="Int64" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="IHD_Tabusers">
+          <Key>
+            <PropertyRef Name="RID" />
+            <PropertyRef Name="LocationID" />
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="EmailID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LocationID" Type="Int64" Nullable="false" />
+          <Property Name="Status" Type="Int64" Nullable="false" />
+          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="personal_data">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contactperson" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="expsalary" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Availonboard" Type="DateTime" Precision="0" />
+          <Property Name="Datetimetomeet" Type="DateTime" Precision="3" />
+          <Property Name="Posdesire" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Preferloc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentCTC" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Placetomeet" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Dob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Maritalstatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FLAG" Type="Boolean" />
+          <Property Name="Created_Date" Type="DateTime" Precision="3" />
+          <Property Name="Modified_Date" Type="DateTime" Precision="3" />
+          <Property Name="Created_User" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Modified_User" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LanguagesKnown" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Careeraspirations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="strengthsandweakness" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HowKnowAboutCollabera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WhatKnownAboutCollabera" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CRRID" Type="Int64" />
+          <NavigationProperty Name="IHD_TABDOCS" Relationship="IHD_DBModel.FK__IHD_TABDOC__PRID__5224328E" FromRole="personal_data" ToRole="IHD_TABDOCS" />
+        </EntityType>
+        <EntityType Name="IHD_TABDOCS">
+          <Key>
+            <PropertyRef Name="Rid" />
+          </Key>
+          <Property Name="Rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRID" Type="Int64" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContentType" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="personal_data" Relationship="IHD_DBModel.FK__IHD_TABDOC__PRID__5224328E" FromRole="IHD_TABDOCS" ToRole="personal_data" />
+        </EntityType>
+        <Association Name="FK__IHD_TABDOC__PRID__5224328E">
+          <End Type="IHD_DBModel.personal_data" Role="personal_data" Multiplicity="1" />
+          <End Type="IHD_DBModel.IHD_TABDOCS" Role="IHD_TABDOCS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="personal_data">
+              <PropertyRef Name="RID" />
+            </Principal>
+            <Dependent Role="IHD_TABDOCS">
+              <PropertyRef Name="PRID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reference">
+          <Key>
+            <PropertyRef Name="RID" />
+          </Key>
+          <Property Name="RID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="relationship" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="contactno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="resid" Type="Int64" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IHD_DBModelStoreContainer" CdmEntityContainer="IHD_DBEntities">
+          <EntitySetMapping Name="IHD_USER_MAIN">
+            <EntityTypeMapping TypeName="IHD_DBModel.IHD_USER_MAIN">
+              <MappingFragment StoreEntitySet="IHD_USER_MAIN">
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="RightsID" ColumnName="RightsID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="TeamID" ColumnName="TeamID" />
+                <ScalarProperty Name="AccessRights" ColumnName="AccessRights" />
+                <ScalarProperty Name="ReportsTo" ColumnName="ReportsTo" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+                <ScalarProperty Name="AccessType" ColumnName="AccessType" />
+                <ScalarProperty Name="ISRecruiter" ColumnName="ISRecruiter" />
+                <ScalarProperty Name="ISTeamLeader" ColumnName="ISTeamLeader" />
+                <ScalarProperty Name="ISOpManager" ColumnName="ISOpManager" />
+                <ScalarProperty Name="ISBuManager" ColumnName="ISBuManager" />
+                <ScalarProperty Name="ISHRManager" ColumnName="ISHRManager" />
+                <ScalarProperty Name="ISTopManager" ColumnName="ISTopManager" />
+                <ScalarProperty Name="ISPartner" ColumnName="ISPartner" />
+                <ScalarProperty Name="InProcessNotification" ColumnName="InProcessNotification" />
+                <ScalarProperty Name="ResumeNotification" ColumnName="ResumeNotification" />
+                <ScalarProperty Name="BlockedResumeNotification" ColumnName="BlockedResumeNotification" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ADSUserID" ColumnName="ADSUserID" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="InvoiceLocID" ColumnName="InvoiceLocID" />
+                <ScalarProperty Name="V5RID" ColumnName="V5RID" />
+                <ScalarProperty Name="pswd" ColumnName="pswd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IHD_CR">
+            <EntityTypeMapping TypeName="IHD_DBModel.IHD_CR">
+              <MappingFragment StoreEntitySet="IHD_CR">
+                <ScalarProperty Name="CandidateStatus" ColumnName="CandidateStatus" />
+                <ScalarProperty Name="ResponseDate" ColumnName="ResponseDate" />
+                <ScalarProperty Name="MailStatus" ColumnName="MailStatus" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Edu_Background">
+            <EntityTypeMapping TypeName="IHD_DBModel.Edu_Background">
+              <MappingFragment StoreEntitySet="Edu_Background">
+                <ScalarProperty Name="Othertrainings" ColumnName="Othertrainings" />
+                <ScalarProperty Name="SchoolUniversity" ColumnName="SchoolUniversity" />
+                <ScalarProperty Name="Yrgraduated" ColumnName="Yrgraduated" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="resid" ColumnName="resid" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recent_Employeer">
+            <EntityTypeMapping TypeName="IHD_DBModel.Recent_Employeer">
+              <MappingFragment StoreEntitySet="Recent_Employeer">
+                <ScalarProperty Name="resid" ColumnName="resid" />
+                <ScalarProperty Name="skills" ColumnName="skills" />
+                <ScalarProperty Name="todate" ColumnName="todate" />
+                <ScalarProperty Name="fromdate" ColumnName="fromdate" />
+                <ScalarProperty Name="company" ColumnName="company" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="IHD_DBModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_LIST_TEST">
+            <EntityTypeMapping TypeName="IHD_DBModel.USER_LIST_TEST">
+              <MappingFragment StoreEntitySet="USER_LIST_TEST">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ModifiedUserID" ColumnName="ModifiedUserID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedUserID" ColumnName="CreatedUserID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IHD_Tabusers">
+            <EntityTypeMapping TypeName="IHD_DBModel.IHD_Tabusers">
+              <MappingFragment StoreEntitySet="IHD_Tabusers">
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personal_data">
+            <EntityTypeMapping TypeName="IHD_DBModel.personal_data">
+              <MappingFragment StoreEntitySet="personal_data">
+                <ScalarProperty Name="CRRID" ColumnName="CRRID" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="WhatKnownAboutCollabera" ColumnName="WhatKnownAboutCollabera" />
+                <ScalarProperty Name="HowKnowAboutCollabera" ColumnName="HowKnowAboutCollabera" />
+                <ScalarProperty Name="strengthsandweakness" ColumnName="strengthsandweakness" />
+                <ScalarProperty Name="Careeraspirations" ColumnName="Careeraspirations" />
+                <ScalarProperty Name="LanguagesKnown" ColumnName="LanguagesKnown" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Modified_User" ColumnName="Modified_User" />
+                <ScalarProperty Name="Created_User" ColumnName="Created_User" />
+                <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+                <ScalarProperty Name="FLAG" ColumnName="FLAG" />
+                <ScalarProperty Name="Maritalstatus" ColumnName="Maritalstatus" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Dob" ColumnName="Dob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone_" ColumnName="Phone " />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Placetomeet" ColumnName="Placetomeet" />
+                <ScalarProperty Name="CurrentCTC" ColumnName="CurrentCTC" />
+                <ScalarProperty Name="Preferloc" ColumnName="Preferloc" />
+                <ScalarProperty Name="Posdesire" ColumnName="Posdesire" />
+                <ScalarProperty Name="Datetimetomeet" ColumnName="Datetimetomeet" />
+                <ScalarProperty Name="Availonboard" ColumnName="Availonboard" />
+                <ScalarProperty Name="expsalary" ColumnName="expsalary" />
+                <ScalarProperty Name="contactperson" ColumnName="contactperson" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IHD_TABDOCS">
+            <EntityTypeMapping TypeName="IHD_DBModel.IHD_TABDOCS">
+              <MappingFragment StoreEntitySet="IHD_TABDOCS">
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PRID" ColumnName="PRID" />
+                <ScalarProperty Name="Rid" ColumnName="Rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="References">
+            <EntityTypeMapping TypeName="IHD_DBModel.Reference">
+              <MappingFragment StoreEntitySet="Reference">
+                <ScalarProperty Name="resid" ColumnName="resid" />
+                <ScalarProperty Name="contactno" ColumnName="contactno" />
+                <ScalarProperty Name="relationship" ColumnName="relationship" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

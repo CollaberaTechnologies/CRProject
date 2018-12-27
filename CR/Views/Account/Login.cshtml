@@ -1,0 +1,259 @@
+﻿@using CR.Models
+@model CR.Models.IHD_USER_MAIN
+@{
+    /**/
+
+    ViewBag.Title = "Log in";
+}
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    .login100-more1 {
+        width: calc(100% - 560px);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: 1;
+        background-image: url('../../images/brainstorming-business-plan-close-up-908295.jpg');
+    }
+
+    .txt11 {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        color: #50b1fb;
+    }
+
+
+
+    .button1 {
+        border-color: #3472F7;
+        color: #3472F7;
+        background-color: #3472F7;
+        color: white;
+    }
+
+    .button2 {
+        color: #fff;
+        background-color: #ac2925;
+        border-color: #761c19;
+        color: white;
+    }
+
+
+    .navbar-default {
+        background-color: #fff;
+        border-color: #e7e7e7;
+    }
+
+    .loginbg {
+        position: relative;
+        display: block;
+        background: url('../../Content/themes/base/images/loginbg.jpg');
+        background-size: cover;
+        min-height: 90vh;
+    }
+
+    footer {
+        position: fixed;
+        width: 100%;
+        height: 35px;
+        bottom: 0;
+        padding: 10px;
+        background: #fff;
+    }
+
+    .navbar1 {
+        position: relative;
+        min-height: 50px;
+        border: 1px solid transparent;
+    }
+
+    .login-form {
+        position: absolute;
+        width: 100%;
+        display: block;
+        padding: 0;
+        margin-top: 25em;
+        transform: translateY(-50%);
+        background: #fff;
+        border-radius: 5px;
+        -webkit-box-shadow: 3px 3px 44px -11px rgba(145,145,145,1);
+        -moz-box-shadow: 3px 3px 44px -11px rgba(145,145,145,1);
+        box-shadow: 3px 3px 44px -11px rgba(145,145,145,1);
+    }
+
+    h3.login-heading {
+        padding: 25px 15px;
+        background: #50b1fb;
+        text-align: center;
+        display: block;
+        font-size: 26px;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        font-weight: 700;
+        color: #fff;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin: 0;
+    }
+
+    .main-form {
+        padding: 30px 40px;
+    }
+
+    .link {
+        text-decoration: none;
+        color: #50b1fb;
+        font-size: 16px;
+    }
+
+    .margin-top-30 {
+        margin-top: 30px;
+    }
+
+    .navbar-default {
+        background-color: #fff;
+        border-color: #e7e7e7;
+    }
+
+    .navbar-brand {
+        float: left;
+        padding: 0;
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+        .navbar-brand img {
+            width: 150px;
+        }
+
+    .logo {
+        width: 150px;
+        margin-top: 10px;
+    }
+</style>
+
+
+
+
+<!--===============================================================================================-->
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Linearicons-Free-v1.0.0/icon-font.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/animate.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/hamburgers.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/animsition.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/select2.min.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/daterangepicker.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<link href="~/Content/util.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/main.css" rel="stylesheet" type="text/css" />
+<!--===============================================================================================-->
+<nav class="navbar1 navbar-default">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/Account/login"> <img src="~/images/Logo (2).jpg" /></a>
+    </div>
+    <div>
+        <ul class="nav navbar-nav navbar-right" style="margin-left:97%;">
+            <li><h3>CR</h3></li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+
+</nav>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login100-form validate-form", role = "form" }))
+            {@Html.AntiForgeryToken()
+
+            <span class="login100-form-title p-b-43">
+                Login to continue
+            </span>
+            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                @Html.TextBoxFor(m => m.UserName, new { @class = "input100" })
+                <span class="focus-input100"></span>
+                <span class="label-input100">UserName</span>
+            </div>
+            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                @Html.PasswordFor(m => m.pswd, new { @class = "input100" })
+                <span class="focus-input100"></span>
+                <span class="label-input100">Password</span>
+            </div>
+            <div class="flex-sb-m w-full p-t-3 p-b-32">
+                @*<div class="contact100-form-checkbox">
+                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Remember me
+                        </label>
+                    </div>*@
+                <div>
+                    <a href="/Account/ForgotPassword" class="txt11">
+                        Forgot Password?
+                    </a>
+                </div>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn">
+                    Login
+                </button>
+                <label class="text-danger">@ViewBag.message</label>
+            </div>
+
+            @*<div class="text-center p-t-46 p-b-20">
+                    <span class="txt2">
+                        or sign up using
+                    </span>
+                </div>*@
+
+            @*<div class="login100-form-social flex-c-m">
+                    <a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
+                        <i class="fa fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+
+                    <a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </div>*@
+        }
+
+            <div class="login100-more1">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--===============================================================================================-->
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/popper.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="~/Scripts/main.js"></script>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

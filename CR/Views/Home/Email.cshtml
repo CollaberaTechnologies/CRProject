@@ -1,0 +1,117 @@
+﻿@using CR.Models
+@{
+    Layout= null;
+}
+<script src="~/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+@*<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>*@
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+@*<link href="~/summernote-bs4.css" rel="stylesheet" />*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<style>
+
+    .button1 {
+        border-color: #3472F7;
+        color: #3472F7;
+        background-color: #3472F7;
+        color: white;
+    }
+
+    .button2 {
+        color: #fff;
+        background-color: #ac2925;
+        border-color: #761c19;
+        color: white;
+    }
+</style>
+
+@using (Html.BeginForm("Email", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <div class="row">
+        <div class="col-md-6 d1" style="width:25%;">
+            <div class="form-group">
+                <label class="card-label">To<span style="color:red;">*</span></label>
+                @Html.Editor("To", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-md-6 d1" style="width:25%;">
+            <div class="form-group">
+                <!--dropdown for To date-->
+                <label class="card-label">CC<span style="color:red;">*</span></label>
+                <div class="">
+                    @Html.Editor("CC", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 d1" style="width:25%;">
+            <div class="form-group">
+                <!--dropdown for from date-->
+                <label class="card-label">BCC<span style="color:red;">*</span></label>
+                <div class="">
+                    @Html.Editor("BCC", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 d1" style="width:25%;">
+            <div class="form-group">
+                <!--dropdown for from date-->
+                <label class="card-label">Subject</label>
+                <div class="">
+                    @Html.Editor("Subject", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 d1" style="width:25%;">
+            <div class="form-group">
+                <!--dropdown for from date-->
+                @*<label class="card-label">Body<span style="color:red;">*</span></label>
+        <div class="">
+            <textarea id="summernote" name="msg" style="height:500px"></textarea>
+        </div>*@
+             
+                    <label class="card-label">Body<span style="color:red;">*</span></label>
+                <div class="">
+                                @Html.TextArea("", new { @id = "FullDescription", @class = "form-control", @rows = "200" }) 
+                                <script>
+                                    CKEDITOR.replace("FullDescription");
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      
+
+            <div class="panel-footer">
+                <input type="submit" class="btn btn-primary" value="Send" id="sendbtns" style="border-color: #3472F7;color: #3472F7;background-color: #3472F7;color: white;" />
+
+
+                <button id="closebutton" type="submit" class="btn btn-danger" style="background-color: #ac2925;border-color: #761c19;color: white;">Close</button>
+
+            </div>
+            <!--BUTTON-->
+
+
+        }
+        <script src="~/summernote-bs4.js"></script>
+
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>*@
+                    <script>
+                        $('#summernote').summernote({
+                            tabsize: 2,
+                            height: 100
+                        });
+                    </script>

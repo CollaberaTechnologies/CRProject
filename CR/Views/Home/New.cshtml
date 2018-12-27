@@ -1,0 +1,1051 @@
+﻿@model CR.Models.New
+@{
+    Layout = null;
+
+}
+
+
+<title>RSI Test</title>
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- CSS Global Compulsory-->
+<link href="~/APP Form/bootstrap.min.css" rel="stylesheet" />
+<!--<link rel="stylesheet" href="/sites/spin/IB/hr/Style%20Library/sweetalert.css">-->
+<link href="~/APP Form/sweetalert.css" rel="stylesheet" />
+<link href="~/APP Form/style.css" rel="stylesheet" />
+<link href="~/APP Form/header1.css" rel="stylesheet" />
+<link href="~/APP Form/responsive.css" rel="stylesheet" />
+<link rel="shortcut icon" href="favicon.ico">
+<!-- CSS Implementing Plugins -->
+<link href="~/APP Form/font-awesome.css" rel="stylesheet" />
+<!-- Google Fonts -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Play">
+<!-- Bulletin Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+<!-- Heading Text Fonts -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+<!-- Body Text Fonts -->
+<!-- CSS Theme -->
+<link href="~/APP Form/bootstrap-datepicker3.min.css" rel="stylesheet" />
+<link href="~/APP Form/easy-autocomplete.css" rel="stylesheet" />
+<link href="~/APP Form/styletheme.css" rel="stylesheet" id="style_color" />
+<link href="~/APP Form/bootstrap-tagsinput.css" rel="stylesheet" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<style>
+        /*basic settings */
+
+        a:focus {
+            outline: none !important;
+            outline-offset: none !important;
+        }
+
+
+
+        /* helper classses */
+
+        .margin-top-20 {
+            margin-top: 20px;
+        }
+
+        .margin-bottom-20 {
+            margin-top: 20px;
+        }
+
+        .no-margin {
+            margin: 0px;
+        }
+
+        /* box component */
+
+        .box {
+            border-color: #e6e6e6;
+            background: #FFF;
+            border-radius: 6px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+            padding: 10px;
+            margin-bottom: 40px;
+        }
+
+        .box-center {
+            margin: 20px auto;
+        }
+
+        /* input [type = file]
+    ----------------------------------------------- */
+
+        input[type=file] {
+            display: block !important;
+            right: 1px;
+            top: 1px;
+            height: 34px;
+            opacity: 0;
+            width: 100%;
+            background: none;
+            position: absolute;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .control-fileupload {
+            display: block;
+            border: 1px solid #d6d7d6;
+            background: #FFF;
+            border-radius: 4px;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            padding: 0px 10px 2px 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .control-fileupload::before, input, label {
+                cursor: pointer !important;
+            }
+            /* File upload button */
+            .control-fileupload:before {
+                /* inherit from boostrap btn styles */
+                padding: 4px 12px;
+                margin-bottom: 0;
+                font-size: 14px;
+                line-height: 20px;
+                color: #333333;
+                text-align: center;
+                text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+                vertical-align: middle;
+                cursor: pointer;
+                background-color: #f5f5f5;
+                background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+                background-repeat: repeat-x;
+                border: 1px solid #cccccc;
+                border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+                border-bottom-color: #b3b3b3;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+                transition: color 0.2s ease;
+                /* add more custom styles*/
+                content: 'Browse';
+                display: block;
+                position: absolute;
+                z-index: 1;
+                top: 2px;
+                right: 2px;
+                line-height: 20px;
+                text-align: center;
+            }
+
+            .control-fileupload::hover, .control-fileupload::focus {
+                .control-fileupload::before;
+
+        {
+            color: #333333;
+            background-color: #e6e6e6;
+            color: #333333;
+            text-decoration: none;
+            background-position: 0 -15px;
+            transition: background-position 0.2s ease-out;
+        }
+
+        }
+
+        .control-fileupload::label {
+            line-height: 24px;
+            color: #999999;
+            font-size: 14px;
+            font-weight: normal;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            position: relative;
+            z-index: 1;
+            margin-right: 90px;
+            margin-bottom: 0px;
+            cursor: text;
+        }
+
+
+        .box h3,
+        .quecat {
+            text-align: center;
+        }
+
+        .panel {
+            counter-reset: section;
+        }
+
+        .panel-body ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .panel-body li.block-count {
+            position: relative;
+        }
+
+            .panel-body li.block-count span.delete {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+                .panel-body li.block-count span.delete i {
+                    position: absolute;
+                    color: brown;
+                    font-size: 20px;
+                    cursor: pointer;
+                    top: 5px;
+                    right: 10px;
+                }
+
+            .panel-body li.block-count:before {
+                counter-increment: section;
+                content: counter(section) " : ";
+                display: block;
+                font-weight: 600;
+                margin-left: 0;
+                background: #eaeaea;
+                padding: 5px 10px;
+                margin-bottom: 5px;
+            }
+
+        .panel-title {
+            color: #fff;
+        }
+
+        a.panel-title,
+        a.panel-title:focus,
+        a.panel-title:hover,
+        a.panel-title:visited {
+            text-decoration: none;
+        }
+
+        .queContainer {
+            margin-bottom: 20px;
+        }
+
+        .reqfield {
+            color: red;
+        }
+
+        .custcontainercol10,
+        .custcontainercol6,
+        .custcontainercol8,
+        .custcontainercol9 {
+            float: none !important;
+            margin-right: auto !important;
+            margin-left: auto !important;
+        }
+
+        .quecat {
+            padding: 0;
+            margin: 0;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 22px;
+            width: 80px;
+            background-color: #585858;
+            border-left: 10px solid #26CAD3;
+        }
+
+        label.cust-title {
+            font-weight: 400;
+            background: 0 0;
+            float: left;
+            font-size: 14px;
+            padding: 5px 0 5px 5px;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+            label.cust-title label {
+                margin-right: 15px;
+                font-weight: 400;
+            }
+
+                label.cust-title label input {
+                    margin-right: 3px;
+                }
+
+        .k-notification-error.k-group {
+            background: rgba(100%, 0%, 0%, .7);
+            color: #fff;
+            background-color: #AFF;
+        }
+
+        .wrong-pass {
+            width: 300px;
+            height: auto;
+        }
+
+            .wrong-pass h3 {
+                font-size: 1em;
+                padding: 15px 22px 5px;
+            }
+
+            .wrong-pass img {
+                float: left;
+                margin: 30px 15px 30px 30px;
+            }
+
+        span.vertical-line {
+            width: 1px;
+            background-color: silver;
+            height: 100%;
+            border: 2px ridge silver;
+            border-radius: 2px;
+        }
+
+        .box {
+            width: 45%;
+            height: auto;
+            background: #FFF;
+            margin: 40px auto;
+            padding: 40px 0;
+        }
+
+
+
+        .effect8 {
+            position: relative;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .3), 0 0 40px rgba(0, 0, 0, .1) inset;
+        }
+
+            .effect8:after,
+            .effect8:before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                box-shadow: 0 0 20px rgba(0, 0, 0, .8);
+                top: 10px;
+                bottom: 10px;
+                left: 0;
+                right: 0;
+                border-radius: 100px/10px;
+            }
+
+            .effect8:after {
+                right: 10px;
+                left: auto;
+                transform: skew(8deg) rotate(3deg);
+            }
+
+        .box h3 {
+            position: relative;
+            top: 80px;
+        }
+
+        .box h1 {
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: red;
+        }
+
+        .sweet-alert .sa-icon {
+            width: 80px;
+            height: 80px;
+            border: 4px solid gray;
+            border-radius: 50%;
+            margin: 20px auto 30px;
+            position: relative;
+            box-sizing: content-box;
+        }
+
+        .country-img {
+            display: block;
+            position: relative;
+            margin: 10px 20px;
+            cursor: pointer;
+            z-index: 11;
+            border: 3px solid #fff;
+            box-shadow: 0 0 14px 4px rgba(185, 185, 185, 0.57);
+            ;
+        }
+
+            .country-img img {
+                display: block;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .country-img p.caption {
+                position: relative;
+                display: block;
+                width: 100%;
+                text-align: center;
+                background: #009bde;
+                /* left: 0;
+                bottom: -100px; */
+                padding: 10px 0;
+                transition: .3s all ease-in-out;
+            }
+
+            .country-img p.caption {
+                color: #fff;
+                margin-bottom: 0;
+                font-size: 16px;
+            }
+
+        .form-control.k-widget {
+            padding: 0;
+            width: 100%;
+        }
+
+        /* .country-img:hover .caption {
+                bottom: 0
+            } */
+        .bootstrap-tagsinput {
+            max-width: unset;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .radio-grp h4 {
+            margin-left: 20px;
+            font-family: 'Roboto',sans-serif;
+            font-size: 15px;
+        }
+
+            .radio-grp h4 input[type="radio"] {
+                margin: 2px 5px 2px;
+            }
+
+        .datepicker > div {
+            display: unset;
+        }
+</style>
+
+<span id="notification" style="display: none;"></span>
+<!-- Container Starts -->
+<!--<div style="padding-top:10%" id="entitySelection">
+    <div class="box effect8" style="text-align: center; vertical-align: middle;">
+        <div class="col-md-12">
+            <h1>Select Entity</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="country-img">
+                        <div id="nezdaLogo">
+                            <img src="/sites/spin/IB/PublishingImages/Philippines.jpg" />
+                            <p class="text-center caption">Philippines</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="country-img">
+                        <div id="collaberaLogo">
+                            <img src="/sites/spin/IB/PublishingImages/India.jpg" />
+                            <p class="text-center caption">India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>-->
+<div class="container" margin-bottom:40px;">
+    <div class="row custmrgn-top15">
+        <div class="col-md-11 custcontainercol8">
+            @using (Html.BeginForm("New", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-blue">
+                        <div class="panel-heading" style="height: 50px;">
+                            <h3 class="panel-title" style="width: 50%; float: left; display: block; font-size: 22px;">Application Form</h3>
+                            @*<img id="companyLogo" src="" style="float: right; width:60px;" />*@
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                            <h3 style="color:#585858">Basic Information</h3>
+                                        </a>
+                                    </div>
+                                    <div id="collapse1" class="panel-collapse collapse in">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-12 form-group text-right">
+                                                    <label class="cust-title">
+                                                        Date and Time (dd/mm/yyyy) :
+                                                        <span id="currentDateTime"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 form-group" id="contactPersonDiv">
+                                                    <label class="cust-title">
+                                                        Contact Person:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(model => Model.personal.contactperson, new { htmlAttributes = new { @class = "contactPerson form-control", Placeholder = "Your Answer",required= "required", @id = "contactPerson" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.contactperson, "", new { @class = "text-danger" })*@
+                                                    @*<input name="contactPerson" id="contactPerson" class="contactPerson form-control" placeholder="Your Answer">*@
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Position Desired:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(model => model.personal.Posdesire, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "positionDesired", required = "required", type = "text" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.Posdesire, "", new { @class = "text-danger" })*@
+                                                    @*<input type="text" name="positionDesired" id="positionDesired" class="form-control" placeholder="Your Answer">*@
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Expected Salary:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(Model => Model.personal.expsalary, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", required = "required", @id = "expectedSalary" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.expsalary, "", new { @class = "text-danger" })*@
+                                                    @*<input type="text" name="expectedSalary" id="expectedSalary" class="form-control" placeholder="Your Answer">*@
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">Preferred Work Locations:
+                                                        <span class="reqfield">* </span></label>
+                                                    @Html.EditorFor(Model => Model.personal.Preferloc, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "workLocation", type = "text", required = "required" } })
+
+                                                    @*<input type="text" name="workLocation" id="workLocation" class="form-control" placeholder="Your Answer">*@
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Availability On-Board:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    <!--<input type="date" name="availabilityBoard" id="availabilityBoard" class="form-control" placeholder="Your Answer">-->
+                                                    <div class="input-group date date-picker" data-date-format="yyyy-MM-dd">
+                                                        @Html.EditorFor(Model => Model.personal.Availonboard, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "availabilityBoard", type = "text", required = "required" } })
+
+                                                        @*<input type="text" class="form-control" id="availabilityBoard">*@
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                        @*@Html.ValidationMessageFor(Model => Model.personal.Availonboard, "", new { @class = "text-danger" })*@
+                                                    </div>
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Current CTC:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(Model => Model.personal.CurrentCTC, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "CurrentCTC", type = "text", required = "required" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.CurrentCTC, "", new { @class = "text-danger" })*@
+                                                    @*<input type="text" name="workLocation" id="workLocation" class="form-control" placeholder="Your Answer">*@
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Date and Time to meet:
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    <!--<input type="date" name="availabilityBoard" id="availabilityBoard" class="form-control" placeholder="Your Answer">-->
+                                                    <div class="input-group date date-picker" data-date-format="yyyy-MM-dd">
+                                                        @Html.EditorFor(Model => Model.personal.Datetimetomeet, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "Datetimetomeet", type = "text", required = "required" } })
+
+                                                        @*<input type="text" class="form-control" id="availabilityBoard">*@
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                        @*@Html.ValidationMessageFor(Model => Model.personal.Datetimetomeet, "", new { @class = "text-danger" })*@
+                                                    </div>
+                                                </div>
+                                                <div class="custpos col-md-6 form-group">
+                                                    <label class="cust-title">
+                                                        Place to meet
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(Model => Model.personal.Placetomeet, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "Placetomeet", type = "text", required = "required" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.Placetomeet, "", new { @class = "text-danger" })*@
+                                                    @*<input type="text" name="workLocation" id="workLocation" class="form-control" placeholder="Your Answer">*@
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                            <h3 style="color:#585858">Personal Data</h3>
+                                        </a>
+                                    </div>
+                                    <div id="collapse2" class="panel-collapse collapse ">
+                                        <div class="panel-body">
+                                            <div class="custpos col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Name:
+                                                    <span class="reqfield">*</span>
+                                                </label>
+                                                @Html.EditorFor(Model => Model.personal.name, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "candidateName", type = "text", required = "required" } })
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.name, "", new { @class = "text-danger" })*@
+                                                @*<input type="text" name="candidateName" id="candidateName" class="form-control" placeholder="Your Answer">*@
+                                            </div>
+                                            <div class="custpos col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Address:
+                                                    <span class="reqfield">*</span>
+                                                </label>
+                                                @Html.EditorFor(Model => Model.personal.Address, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "candidateAddress", type = "text", required = "required" } })
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.Address, "", new { @class = "text-danger" })*@
+                                                @*<input type="text" name="candidateAddress" id="candidateAddress" class="form-control" placeholder="Your Answer">*@
+                                            </div>
+                                            <div class="custpos col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    EmailID:
+                                                    <span class="reqfield">*</span>
+                                                </label>
+                                                @Html.EditorFor(Model => Model.personal.EmailId, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "EmailId", type = "Email", required = "required" } })
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.Address, "", new { @class = "text-danger" })*@
+                                                @*<input type="text" name="candidateAddress" id="candidateAddress" class="form-control" placeholder="Your Answer">*@
+                                            </div>
+                                            <div class="custpos col-md-12 form-group">
+                                                <label class="cust-title">Contact Number(s):</label>
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Mobile:
+                                                    <span class="reqfield">*</span>
+                                                </label>
+                                                @Html.EditorFor(Model => Model.personal.Mobile, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "mobileNumber", type = "number", required = "required" } })
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.Mobile, "", new { @class = "text-danger" })*@
+                                                @*<input type="number" name="mobileNumber" id="mobileNumber" class="form-control" placeholder="Your Answer">*@
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">Phone:</label>
+                                                @Html.EditorFor(Model => Model.personal.Phone_, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "contactPhone", type = "number" } })
+                                                @*<input type="number" name="contactPhone" id="contactPhone" class="form-control" placeholder="Your Answer">*@
+                                            </div>
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Gender
+                                                    <span class="reqfield">*</span>
+                                                    <br />
+                                                    <label class="radiolab">
+                                                        @Html.RadioButtonFor(model => model.personal.Gender, "Male", new { htmlAttributes = new { type = "radio", name = "gender", mandatory = "true", @checked = "checked", required = "required" } })
+
+                                                        @*<input type="radio" name="gender" value="Male" dataType="radio" mandatory=true checked="checked">*@Male
+                                                    </label>
+                                                    <label class="radiolab">
+                                                        @Html.RadioButtonFor(model => model.personal.Gender, "Female", new { htmlAttributes = new { type = "radio", name = "gender", mandatory = "true", required = "required" } })
+                                                        @*<input type="radio" name="gender" value="Female" dataType="radio" mandatory=true>*@Female
+                                                    </label>
+
+                                                </label>
+                                            </div>
+                                            <div class="custpos col-md-12 form-group"></div>
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Date of Birth:
+                                                    <span class="reqfield">* </span>
+                                                </label>
+                                                <!-- <input type="text" name="dob" id="dob" class="form-control" style="width: 100%"> -->
+                                                <div class="input-group date date-picker" data-date-format="yyyy-MM-dd">
+                                                    @Html.EditorFor(Model => Model.personal.Dob, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "dob", type = "text", required = "required" } })
+                                                    @*@Html.ValidationMessageFor(Model => Model.personal.Dob, "", new { @class = "text-danger" })*@
+                                                    @*<input type="text" class="form-control" id="dob">*@
+                                                    <span class="input-group-btn">
+                                                        <button class="btn default" type="button">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </button>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Age:
+                                                    <span class="reqfield">* </span>
+                                                </label>
+                                                @Html.EditorFor(Model => Model.personal.Age, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", type = "number", disabled = "disabled", required = "required" } })
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.Age, "", new { @class = "text-danger" })*@
+                                                @*<input type="hidden" name="age" id="age" class="form-control" dataType="number" disabled="disabled">*@
+                                                @Html.HiddenFor(model => model.age)
+                                                @Html.HiddenFor(model=>model.hiddenid)
+                                            </div>
+
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title">
+                                                    Marital Status
+                                                    <span class="reqfield">*</span>
+                                                </label>
+                                                @Html.DropDownListFor(Model => Model.personal.Maritalstatus, new List<SelectListItem>
+                                  {
+                                              new SelectListItem{ Text="None" },
+                                  new SelectListItem{ Text="Married", Value = "Married" },
+                                  new SelectListItem{ Text="Seperated", Value = "Seperated" },
+                                       new SelectListItem{ Text="Single", Value = "Single",Selected=true},
+                                            new SelectListItem{ Text="Widowed", Value = "Widowed" },
+
+                                  }, new { @class = "form-control", @id = "maritalStatus", dataType = "choice", required = "required" })
+
+                                                @*@Html.ValidationMessageFor(Model => Model.personal.Maritalstatus, "", new { @class = "text-danger" })*@
+                                                @*<select id="maritalStatus" class="form-control" dataType="choice">
+                                                            <option value="None">None</option>
+                                                            <option value="Married">Married</option>
+                                                            <option value="Seperated">Seperated</option>
+                                                            <option value="Single" selected="selected">Single</option>
+                                                            <option value="Widowed">Widowed</option>
+                                                        </select>
+                                                    </div>*@
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" id="indiaInfo">
+                                        <div class="panel-heading">
+                                            <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+                                                <h3 style="color:#585858">Additional Information</h3>
+                                            </a>
+                                        </div>
+                                        <div id="collapse6" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="col-md-12 form-group">
+                                                    <label class="cust-title">Language Known
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.EditorFor(Model => Model.personal.LanguagesKnown, new { htmlAttributes = new { @class = "form-control tag-language", @id = "txtlanguage", type = "text", data_role = "tagsinput", required = "required" } })
+                                                    @*<input type="text" value="" data-role="tagsinput" id="txtlanguage" class="form-control tag-language" />*@
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label class="cust-title">How did you get to know about Collabera ?
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    <div class="radio-grp">
+                                                        <h4>
+                                                            @Html.RadioButtonFor(model => model.personal.HowKnowAboutCollabera, "Social Media: Facebook/Linkedin/Twitter", new { htmlAttributes = new { type = "radio", name = "optradio", mandatory = "true", @checked = "checked",required = "required" } })Social Media: Facebook/Linkedin/Twitter
+                                                        </h4>
+                                                        <h4>
+                                                            @Html.RadioButtonFor(model => model.personal.HowKnowAboutCollabera, "Job Posting: Naukri/Indeed/Monster", new { htmlAttributes = new { type = "radio", name = "optradio", mandatory = "true", @checked = "checked", required = "required" } })Job Posting: Naukri/Indeed/Monster
+                                                        </h4>
+                                                        <h4>
+                                                            @Html.RadioButtonFor(model => model.personal.HowKnowAboutCollabera, "Collabera Connected You", new { htmlAttributes = new { type = "radio", name = "optradio", mandatory = "true", @checked = "checked", required = "required" } })
+                                                            Collabera Connected You
+
+                                                            <input type="text" placeholder="Name" id="CollaberaConnectedYou">
+                                                        </h4>
+                                                        <h4>
+                                                            @Html.RadioButtonFor(model => model.personal.HowKnowAboutCollabera, "Someone referred You to Collabera", new { htmlAttributes = new { type = "radio", name = "optradio", mandatory = "true", @checked = "checked", required = "required" } })
+                                                            Someone referred You to Collabera
+                                                            <input type="text" placeholder="Name" id="SomeoneReferredYou">
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label class="cust-title">What do you Known Collabera ?
+                                                        <span class="reqfield">*</span></label>
+                                                    @Html.TextAreaFor(Model => Model.personal.WhatKnownAboutCollabera, new { @class = "form-control", @id = "txtKnow", rows = "3", required = "required" })
+                                                    @*<textarea value="" id="txtKnow" class="form-control" rows="3"></textarea>*@
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label class="cust-title">What are your Career aspirations ?
+                                                        <span class="reqfield">*</span></label>
+                                                    @Html.TextAreaFor(Model => Model.personal.Careeraspirations, new { @class = "form-control", @id = "txtaspiration", rows = "3", required = "required" })
+                                                    @*<textarea value="" id="txtaspiration" class="form-control" rows="3"></textarea>*@
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <label class="cust-title">Why do you think you will be suitable for this job?(Max Character)
+                                                        <span class="reqfield">*</span>
+                                                    </label>
+                                                    @Html.TextAreaFor(Model => Model.personal.strengthsandweakness, new { @class = "form-control", @id = "txtStrengthAndWeakness", rows = "3", required = "required" })
+                                                    @*<textarea value="" id="txtStrengthAndWeakness" class="form-control" rows="3"></textarea>*@
+                                                </div>
+                                                <div class="col-md-12 form-group">
+                                                    <h3>UploadFile</h3>
+                                                    <span class="control-fileupload">
+                                                        <label for="file">Choose a file :</label>
+                                                        <input type="file" id="file_uploader" name="file_uploader">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                                    <h3 style="color:#585858">Educational Background</h3>
+                                                </a>
+                                            </div>
+                                            <div id="collapse3" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <div>
+                                                        <ul id="educationDetails">
+                                                            <li class="block-count">
+                                                                <span class="delete" onclick="deleteDiv(this)">
+                                                                    <i class="fa fa-times"></i>
+                                                                </span>
+                                                                <div class="row educationDetailsDiv">
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">
+                                                                            Course:
+                                                                            <span class="reqfield">*</span>
+                                                                        </label>
+                                                                        @Html.EditorFor(Model => Model.edu.course, new { htmlAttributes = new { @class = "form-control course", @name = "course", Placeholder = "Your Answer", type = "text", required = "required" } })
+                                                                        @*@Html.ValidationMessageFor(Model => Model.edu.course, "", new { @class = "text-danger" })*@
+                                                                        @*<input type="text" name="course" class="form-control course" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">
+                                                                            Year Graduated:
+                                                                            <span class="reqfield">*</span>
+                                                                        </label>
+                                                                        @Html.EditorFor(Model => Model.edu.Yrgraduated, new { htmlAttributes = new { @class = "form-control yearGraduated", @name = "yearGraduated", Placeholder = "Your Answer", type = "number", maxlength = "4", required = "required" } })
+                                                                        @*@Html.ValidationMessageFor(Model => Model.edu.Yrgraduated, "", new { @class = "text-danger" })*@
+                                                                        @*<input type="number" maxlength="4" name="yearGraduated" class="form-control yearGraduated" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">
+                                                                            School/University:
+                                                                            <span class="reqfield">*</span>
+                                                                        </label>
+                                                                        @Html.EditorFor(Model => Model.edu.SchoolUniversity, new { htmlAttributes = new { @class = "form-control university", @name = "university", Placeholder = "Your Answer", type = "text", required = "required" } })
+                                                                        @*@Html.ValidationMessageFor(Model => Model.edu.SchoolUniversity, "", new { @class = "text-danger" })*@
+                                                                        @*<input type="text" name="university" class="form-control university" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">Other Trainings Attended:
+                                                                            <span class="reqfield">*</span></label>
+                                                                        @Html.EditorFor(Model => Model.edu.Othertrainings, new { htmlAttributes = new { @class = "form-control otherTrainingsAttended", Placeholder = "Your Answer", type = "text", required = "required" } })
+                                                                        @*<input type="text" name="otherTrainingsAttended" class="form-control otherTrainingsAttended" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="custpos col-md-12 form-group addAditionaleduRow">
+                                                        <span class="glyphicon glyphicon-plus" style="color: #009bde"></span>
+                                                        <span style="padding-left: 5px; cursor: pointer">Additional Educational Details</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                                    <h3 style="color:#585858">Recent Employeer</h3>
+                                                </a>
+                                            </div>
+                                            <div id="collapse4" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <div>
+                                                        <ul id="employementDetails">
+                                                            <li class="block-count">
+                                                                <span class="delete" onclick="deleteDiv(this)">
+                                                                    <i class="fa fa-times"></i>
+                                                                </span>
+                                                                <div class="employementDetailsDiv">
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">Position:</label>
+                                                                        @Html.EditorFor(Model => Model.employeer.position, new { htmlAttributes = new { @class = "position form-control", Placeholder = "Your Answer", type = "text" } })
+                                                                        @*<input type="text" name="position" class="position form-control" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">Company:</label>
+                                                                        @Html.EditorFor(Model => Model.employeer.company, new { htmlAttributes = new { @class = "companyName form-control", Placeholder = "Your Answer", type = "text" } })
+                                                                        @*<input type="text" name="companyName" class="companyName form-control" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">From Date:</label>
+                                                                        <!--<input type="text" style="width: 100%" class="form-control fromDate" id="fromDate1" placeholder="Your Answer" />-->
+                                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                                                            @*@Html.EditorFor(Model => Model.employeer.fromdate, new { htmlAttributes = new { @class = "form-control fromDate", @id = "fromDate1", Placeholder = "Your Answer", type = "text" } })*@
+                                                                            <input type="text" class="form-control" id="fromDate1">
+                                                                            <span class="input-group-btn">
+                                                                                <button class="btn default" type="button">
+                                                                                    <i class="fa fa-calendar"></i>
+                                                                                </button>
+                                                                            </span>
+                                                                            @*@Html.ValidationMessageFor(Model => Model.employeer.fromdate, "", new { @class = "text-danger" })*@
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="custpos col-md-6 form-group">
+                                                                        <label class="cust-title">
+                                                                            To Date:
+                                                                            <span style="float: right;">
+
+                                                                                <input type="checkbox" id="presentCompany" name="presentCompany" />Present Company
+                                                                            </span>
+                                                                        </label>
+                                                                        <!--<input type="text" style="width: 100%" class="form-control toDate" id="toDate1" placeholder="Your Answer" />-->
+                                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
+                                                                            @*@Html.EditorFor(Model => Model.employeer.todate, new { htmlAttributes = new { @class = "form-control", @id = "toDate1 toDate", Placeholder = "Your Answer", type = "text" } })*@
+                                                                            <input type="text" class="form-control" id="toDate1">
+                                                                            <span class="input-group-btn">
+                                                                                <button class="btn default" type="button">
+                                                                                    <i class="fa fa-calendar"></i>
+                                                                                </button>
+                                                                            </span>
+                                                                            @*@Html.ValidationMessageFor(Model => Model.employeer.todate, "", new { @class = "text-danger" })*@
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="custpos col-md-12 form-group">
+                                                                        <label class="cust-title">Skills/Technology Used:</label>
+                                                                        @Html.EditorFor(Model => Model.employeer.skills, new { htmlAttributes = new { @class = "skillsAndTechnology form-control", Placeholder = "Your Answer", type = "text" } })
+                                                                        @*<input type="text" class="skillsAndTechnology form-control" placeholder="Your Answer" />*@
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="custpos col-md-12 form-group addAditionalRow">
+                                                        <span class="glyphicon glyphicon-plus" style="color: #009bde"></span>
+                                                        <span style="padding-left: 5px; cursor: pointer">Additional Employment Details</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <a class="panel-title" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                                    <h3 style="color:#585858">References</h3>
+                                                </a>
+                                            </div>
+                                            <div id="collapse5" class="panel-collapse collapse ">
+                                                <div class="panel-body">
+                                                    <div class="col-md-4 form-group">
+                                                        <label class="cust-title">Name: <span class="reqfield">*</span></label>
+                                                        @Html.EditorFor(Model => Model.refrence.name, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "referenceName", type = "text", required = "required" } })
+                                                        @*@Html.ValidationMessageFor(Model => Model.refrence.name, "", new { @class = "text-danger" })*@
+                                                        @*<input type="text" name="referenceName" id="referenceName" class="form-control" placeholder="Your Answer" />*@
+                                                    </div>
+
+                                                    <div class="col-md-4 form-group">
+                                                        <label class="cust-title">Relationship: <span class="reqfield">*</span></label>
+                                                        @Html.EditorFor(Model => Model.refrence.relationship, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "referenceRelationship", type = "text", required = "required" } })
+                                                        @*@Html.ValidationMessageFor(Model => Model.refrence.relationship, "", new { @class = "text-danger" })*@
+                                                        @*<input type="text" name="referenceRelationship" id="referenceRelationship" class="form-control" placeholder="Your Answer" />*@
+                                                    </div>
+
+                                                    <div class="col-md-4 form-group">
+                                                        <label class="cust-title">Contact Number:
+                                                            <span class="reqfield">* </span>
+                                                        </label>
+                                               
+                                                        @Html.EditorFor(Model => Model.refrence.contactno, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "referenceNumber", type = "number", required = "required" } })
+                                                        @*<input type="number" name="referenceNumber" id="referenceNumber" class="form-control" placeholder="Your Answer" />*@
+                                                    </div>
+                                                    <div class="custpos col-md-12 form-group">
+                                                        <label class="cust-title">
+                                                            Declaration
+                                                            <span class="reqfield">* </span>
+                                                            <br />
+                                                            <label class="radiolab">
+                                                                <input type="radio" name="declaration" value="true" id="declaration" required> I hereby declare that the above written particulars are true to
+                                                                the best of my knowledge.
+                                                            </label>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer text-center">
+                                   
+                                    <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div id="ResumePDF"></div>
+
+    <!-- JS Global Compulsory -->
+
+    <script src="~/APP Form/js/jquery.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/APP Form/js/jquery-migrate-1.2.1.min.js"></script>
+
+    <script src="~/APP Form/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <!--<script src="/sites/spin/IB/hr/SiteAssets/sweetalert.min.js"></script>-->
+    <script src="~/APP Form/js/sweetalert.js" type="text/javascript"></script>
+    <script src="~/APP Form/js/hover-dropdown.min.js" type="text/javascript"></script>
+    <script src="~/APP Form/js/back-to-top.js" type="text/javascript"></script>
+
+    <script src="~/APP Form/js/bootstrap-tagsinput.js" type="text/javascript"></script>
+    <!-- JS Page Level -->
+    <script src="~/APP Form/js/app.js" type="text/javascript"></script>
+    <link href="~/APP Form/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/APP Form/kendo.default.min.css" rel="stylesheet" />
+    <script src="~/APP Form/js/kendo.all.min.js"></script>
+    <script src="~/APP Form/js/jszip.min.js"></script>
+    <script src="~/APP Form/js/jquery.easy-autocomplete.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.0/jspdf.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/APP Form/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/APP Form/js/CAF.js"></script>
+    @*<script type="text/javascript" src="~/APP Form/js/CAF.js?ver=16"></script>*@
+    <script id="errorTemplate" type="text/x-kendo-template">
+        <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $('input[name=declaration]').change(function () {
+                   debugger;
+                   $('#btnSubmit').attr("disabled", false);
+                });
+            $('#btnSubmit').click(function () {
+                debugger;
+                if (validate() == false) {
+                    $('#btnSubmit').attr("disabled", true);
+                    $("#declaration").prop("checked", false);
+
+
+                    //SaveData();
+                }
+            });
+
+            $(".date-picker").datepicker({
+                orientation: "right",
+                autoclose: !0,
+                format: 'yyyy-MM-dd'
+            });
+         
+
+            $('input[type=file]').change(function () {
+                var t = $(this).val();
+                var labelText = 'File : ' + t.substr(12, t.length);
+                $(this).prev('label').text(labelText);
+            })
+
+
+        })
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")

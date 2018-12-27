@@ -1,0 +1,284 @@
+/* Medium devices (landscape to 2560px) */
+
+/* Medium devices (landscape to 1024px) */
+@media screen and (width: 1024px)   {		
+	.cont-puffsub .fa {margin-top:15px;}
+	.tiletitlenew {margin-top:10px !important;}
+}
+@media screen and (width: 768px)   {		
+	.cont-puffsub .fa {margin-top:15px;}
+	.tiletitlenew {margin-top:10px !important;}
+}
+/* Medium devices (tablets/ipad landscape to 992px) */
+
+@media (min-width:769px) and (max-width: 1024px)  {
+	
+/* CLOCK */
+#ContentWC {margin:15px 0px; padding-right:0px !important; }
+#ContentWC h4 {background-color: #00c0ef; color: #ffffff; padding: 12px; margin: 0px; text-transform: uppercase; font-size: 22px;}
+.WCBody { padding: 0px; float: left; width:98%;}
+
+/*#clock_CST .jcgmt-lbl {background-color:#1169b1 !important;} */
+
+.jcgmt-clockHolder {display:none !important; width:100px; margin:0 auto; position:relative; overflow: hidden;}
+
+.jcgmt-container {float: left; padding: 0px; margin: 0px; background-color: #4f5458; width:50%;}
+
+.jcgmt-container .jcgmt-lbl {
+	color: #00c0ef;
+    text-align: center;
+    width: 150px;
+    margin: 0 auto;
+    line-height: 22px;
+    padding: 11px 0px 20px;
+    float: left;
+    background-color: #4f5458;
+    font-size: 24px;
+    font-family: 'Oswald', serif, Open Sans, sans-serif;
+    border-bottom: 5px solid;
+}
+.jcgmt-lbl {
+	border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #00c0ef;
+}
+
+.jcgmt-sec, .jcgmt-min, .jcgmt-hour {display:block; position:absolute;}
+.jcgmt-rotatingWrapper {position:absolute; width:100px; height:100px;}
+.jcgmt-date {padding-top:0px !important;	font-size:14px !important; color:#fff !important;}
+
+.jcgmt-digital, .jcgmt-date {
+	color: #00c0ef;
+    font-family: 'Oswald', serif, Open Sans, sans-serif;
+    font-size: 24px;
+    width: 130px;
+    float: right;
+    margin: 0;
+    background-color: #4f5458;
+    padding: 0px;
+}
+.clock_CST .jcgmt-lbl {background-color:#1169b1;}
+/* CLOCK */
+	
+	
+	/* Widget Layout */
+	#widget1,#widget2,#widget3,#widget4,#widget5,#widget6,#widget7,#widget8 {margin:15px 0px; float:left; width:50%;}
+	/* Widget Layout */
+	
+	#applinks a {float:left; padding-right:0px !important;}
+	.tile-small {
+	width: 90px;
+    height: 90px;
+    display: block;
+    float: left;
+    margin: 3px 3px 0px 0px;
+    background-color: #00aff0 !important;
+    cursor: pointer;
+	}
+	
+	.awNotices a {font-size:10px; padding:10px 25px 10px 10px; left:0px;}
+	
+	span.bulltitle {display:none;}
+	
+	.cust-scrolled {	height:375px; overflow-y:scroll;}
+}
+
+/* Small devices (tablets, 768px and less) */
+
+@media (max-width: 768px) {
+	
+/* CLOCK */
+#ContentWC {margin:15px 0px; padding-right:0px !important; }
+#ContentWC h4 {background-color: #00c0ef; color: #ffffff; padding: 12px; margin: 0px; text-transform: uppercase; font-size: 22px;}
+.WCBody { padding: 0px; float: left; width:98%;}
+
+/*#clock_CST .jcgmt-lbl {background-color:#1169b1 !important;} */
+
+.jcgmt-clockHolder {display:none !important; width:100px; margin:0 auto; position:relative; overflow: hidden;}
+
+.jcgmt-container {float: left; padding: 0px; margin: 0px; background-color: #4f5458; width:50%;}
+
+.jcgmt-container .jcgmt-lbl {
+	color: #00c0ef;
+    text-align: center;
+    width: 150px;
+    margin: 0 auto;
+    line-height: 22px;
+    padding: 11px 0px 20px;
+    float: left;
+    background-color: #4f5458;
+    font-size: 24px;
+    font-family: 'Oswald', serif, Open Sans, sans-serif;
+    border-bottom: 5px solid;
+}
+.jcgmt-lbl {
+	border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #00c0ef;
+}
+
+.jcgmt-sec, .jcgmt-min, .jcgmt-hour {display:block; position:absolute;}
+.jcgmt-rotatingWrapper {position:absolute; width:100px; height:100px;}
+.jcgmt-date {padding-top:0px !important;	font-size:14px !important; color:#fff !important;}
+
+.jcgmt-digital, .jcgmt-date {
+	color: #00c0ef;
+    font-family: 'Oswald', serif, Open Sans, sans-serif;
+    font-size: 24px;
+    width: 130px;
+    float: right;
+    margin: 0;
+    background-color: #4f5458;
+    padding: 0px;
+}
+.clock_CST .jcgmt-lbl {background-color:#1169b1;}
+/* CLOCK */
+	
+/* Widget Layout */
+#widget1,#widget2,#widget3,#widget4,#widget5,#widget6,#widget7,#widget8 {margin:15px 0px; float:left; width:100%;}
+/* Widget Layout */
+	
+	.cont-puffsub .fa {margin-top:15px;}
+	
+	#applinks a {float:left; padding-right:0px !important;}
+	
+	.tile-small {
+	width: 90px;
+    height: 90px;
+    display: block;
+    float: left;
+    margin: 3px 3px 0px 0px;
+    background-color: #00aff0 !important;
+    cursor: pointer;
+	}
+	
+	.awNotices a {font-size:10px; padding:10px 25px 10px 10px; left:0px;}
+	
+	span.bulltitle {display:none;}
+	
+	.cust-scrolled {	height:255px; overflow-y:scroll;}
+	
+	
+	
+	/*Purchase Block*/
+	.purchase span {
+		font-size: 24px;
+		line-height: 32px;
+	}
+
+	.purchase a.btn-buy {
+		font-size:14px;
+		padding:9px 22px 6px;				
+	}	
+	/*End Purchase Block*/
+
+	/*Table Hidden Class*/
+	.table th.hidden-sm,
+	.table td.hidden-sm {
+		display: none !important;
+	}
+	/*End Table Hidden Class*/
+
+	/*Spaces (Margin Bottom)*/
+	.mb-margin-bottom-20 {
+		margin-bottom: 20px;
+	}
+	.mb-margin-bottom-30 {
+		margin-bottom: 30px;
+	}
+	.mb-margin-bottom-40 {
+		margin-bottom: 40px;
+	}
+	.mb-margin-bottom-50 {
+		margin-bottom: 50px;
+	}
+	.mb-margin-bottom-60 {
+		margin-bottom: 60px;
+	}
+	/*End Spacea (Margin Bottom)*/
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+	/*Spaces (Margin Bottom)*/
+	.md-margin-bottom-20 {
+		margin-bottom: 20px;
+	}
+	.md-margin-bottom-30 {
+		margin-bottom: 30px;
+	}
+	.md-margin-bottom-40 {
+		margin-bottom: 40px;
+	}
+	.md-margin-bottom-50 {
+		margin-bottom: 50px;
+	}
+	.md-margin-bottom-60 {
+		margin-bottom: 60px;
+	}
+	/*End Spacea (Margin Bottom)*/
+}
+
+/*Sliders
+------------------------------------*/
+@media (max-width: 900px) {
+	/*Slider Sequence*/
+	#sequence-theme .info {
+		top:80px !important;
+		width:60% !important;
+		margin-right:50px;
+	}
+
+	/*Slider Parallax*/
+	.da-slide .da-img {
+		display:none;
+	}
+}
+
+@media (max-width: 450px) {
+	/*Slider Sequence*/
+	#sequence-theme .info {
+		top:70px !important;
+		width:70% !important;
+		margin-right:25px;
+	}
+	#sequence-theme h2 {
+		font-size:30px !important;
+	}
+	#sequence-theme .info p {
+		font-size:18px !important;
+	}
+
+	/*Slider Parallax*/
+	.da-slide p {
+		display:none;
+	}
+}
+
+/*Pricing Page*/
+
+/* Devices (tablets, 768px and more) */
+@media (min-width: 767px) {
+	
+	.no-space-pricing [class^="col-"],
+	.no-space-pricing [class*=" col-"] {
+		padding: 0;
+	}	
+}
+
+/* Medium Devices (Desktops, 992px and less) */
+@media (max-width: 992px) {
+	
+	.price-active,
+	.pricing:hover {
+		margin-top: 0;
+	}
+
+	.no-space-pricing .price-active .pricing-head h4,
+	.no-space-pricing .pricing:hover .pricing-head h4 {
+		padding: 5px 0;
+		font-size: 70px;
+	}	
+	
+}
+/*End Pricing Page*/

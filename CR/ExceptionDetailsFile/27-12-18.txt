@@ -1,0 +1,24 @@
+-----------Exception Details on  12/27/2018 2:57:56 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/27/2018 2:57:56 PM
+
+Error Line No : ine 364
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/Email
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+

@@ -1,0 +1,48 @@
+-----------Exception Details on  11/15/2018 11:08:56 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 11/15/2018 11:08:56 AM
+
+Error Line No : ine 576
+
+Error Message: EndOfStreamException
+
+Exception Type: System.IO.EndOfStreamException
+
+Error Location : Unable to read beyond the end of the stream.
+
+ Error Page Url: http://localhost:57276/Clients/uploadfile
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  11/15/2018 11:51:16 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 11/15/2018 11:51:16 AM
+
+Error Line No : ine 562
+
+Error Message: ObjectDisposedException
+
+Exception Type: System.ObjectDisposedException
+
+Error Location : Cannot access a closed file.
+
+ Error Page Url: http://localhost:57276/Clients/uploadfile
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
