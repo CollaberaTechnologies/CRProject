@@ -1001,6 +1001,12 @@
     function closebtn() {
     window.location.href = '@Url.Action("Dashboard", "Home")';
     }
+    function dateFormat(d) {
+        console.log(d);
+        return ((d.getMonth() + 1) + "").padStart(2, "0")
+            + "/" + (d.getDate() + "").padStart(2, "0")
+            + "/" + d.getFullYear();
+    }
     $(document).ready(function () {
 
         $('#status').on('show.bs.modal', function (e) {
@@ -1048,7 +1054,7 @@
                         }
                       data+="</div></div>"
                         data += "<div class='flip-card-back'><p class='card-text'>"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + candidatedata[i].CreatedDate + "</p>"
+                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
@@ -1103,7 +1109,7 @@
   }
                          data += "</div></div>"
                          data+="<div class='flip-card-back'><p class='card-text'>"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + candidatedata[i].CreatedDate + "</p>"
+                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"

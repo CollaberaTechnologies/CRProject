@@ -43,7 +43,13 @@ namespace CR.Controllers
             string fileName, contentType;
             var rid = db.personal_data.Where(x => x.CRRID == id).OrderByDescending(x=>x.Created_Date).Select(x => x.RID).FirstOrDefault();
             var info = db.IHD_TABDOCS.Where(x => x.PRID == rid).FirstOrDefault();
-            if (info == null) { }
+            if (info == null) {
+                Response.Clear();
+                Response.Write("No Resume is Attached");
+                Response.Flush();
+                Response.End();
+
+            }
             else
             {
                 fileName = info.Name;
@@ -194,7 +200,7 @@ namespace CR.Controllers
                     }
                     else
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired" && (x.FullName.Contains(name) || x.EmailID.Contains(name))).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired" ).Where(x=>x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
                     }
                     
                 }
@@ -230,7 +236,7 @@ namespace CR.Controllers
                     }
                     else
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" && (x.FullName.Contains(name) || x.EmailID.Contains(name)) || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").OrderByDescending(x => x.CreatedDate).ToList();
+                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
                     }
                 }
                 else
@@ -285,27 +291,40 @@ namespace CR.Controllers
 
             return View(mailinfo);
         }
-        public static string Decrypt(string cipherText)
+        public  string Decrypt(string cipherText)
         {
-            string EncryptionKey = "Collabera@123";
-            cipherText = cipherText.Replace(" ", "+");
-            byte[] cipherBytes = Convert.FromBase64String(cipherText);
-            using (Aes encryptor = Aes.Create())
+            try
             {
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
-                encryptor.Key = pdb.GetBytes(32);
-                encryptor.IV = pdb.GetBytes(16);
-                using (MemoryStream ms = new MemoryStream())
+                string EncryptionKey = "Collabera@123";
+                cipherText = cipherText.Replace(" ", "+");
+                byte[] cipherBytes = Convert.FromBase64String(cipherText);
+                using (Aes encryptor = Aes.Create())
                 {
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                    Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
+                    encryptor.Key = pdb.GetBytes(32);
+                    encryptor.IV = pdb.GetBytes(16);
+                    using (MemoryStream ms = new MemoryStream())
                     {
-                        cs.Write(cipherBytes, 0, cipherBytes.Length);
-                        cs.Close();
+                        using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherBytes, 0, cipherBytes.Length);
+                            cs.Close();
+                        }
+                        cipherText = Encoding.Unicode.GetString(ms.ToArray());
                     }
-                    cipherText = Encoding.Unicode.GetString(ms.ToArray());
                 }
+                return cipherText;
             }
-            return cipherText;
+            catch(Exception ex)
+            {
+                string ip = Request.UserHostAddress;
+                errorinfo.SendErrorToText(ex, ip);
+                Response.Clear();
+                Response.Write("Invalid Link.");
+                Response.Flush();
+                Response.End();
+                return "";
+            }
         }
         public static string encrypt(string encryptString)
         {
@@ -358,6 +377,7 @@ namespace CR.Controllers
                 message.Subject = mailinfo.Subject;
                 message.Body = body.Replace("crrid", encrypt(rid));
                 message.IsBodyHtml = true;
+               
                 var smtp = new SmtpClient
                 {
                     Host = "mailbrd.collabera.com",

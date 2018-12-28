@@ -1,0 +1,48 @@
+-----------Exception Details on  12/28/2018 11:28:13 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/28/2018 11:28:13 AM
+
+Error Line No : ine 300
+
+Error Message: FormatException
+
+Exception Type: System.FormatException
+
+Error Location : Invalid length for a Base-64 char array or string.
+
+ Error Page Url: http://localhost:54783/Home/new?id=XngPvGdmemTFRHLElY16Qw
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/28/2018 11:28:53 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/28/2018 11:28:53 AM
+
+Error Line No : ine 311
+
+Error Message: CryptographicException
+
+Exception Type: System.Security.Cryptography.CryptographicException
+
+Error Location : The input data is not a complete block.
+
+ Error Page Url: http://localhost:54783/Home/new?id=XngPvGdmemTFRHLEQw==
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
