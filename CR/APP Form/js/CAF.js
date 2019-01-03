@@ -470,10 +470,7 @@ function validate() {
         isValidated = false;
         msg += 'Mobile Number is required \n';
     }
-    //if ($('input[name=personal.Gender]:checked').length <= 0) {
-    //    isValidated = false;
-    //    msg += 'Gender is required \n';
-    //}
+  
     if ($('#dob').val() == '') {
         isValidated = false;
         msg += 'Date of Birth is required \n';
@@ -562,11 +559,7 @@ function validate() {
     }
     return isValidated;
 }
-//('input[name=declaration]').change(function () {
-//    debugger;
-//    $('#btnSubmit').attr("disabled", false);
 
-//});
 $('#EmailId').change(function () {
 
     if ((/^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;]{0,1}\s*)+$/.test($('#EmailId').val()))) {
@@ -586,7 +579,7 @@ function isDate(ExpiryDate) {
         day,      // day 
         month,    // month 
         year;     // year 
-    // date length should be 10 characters (no more no less) 
+    
     if (ExpiryDate.length !== 10) {
         return false;
     }
