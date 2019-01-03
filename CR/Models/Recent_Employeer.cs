@@ -11,17 +11,14 @@ namespace CR.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Recent_Employeer
     {
         public long RID { get; set; }
         public string position { get; set; }
         public string company { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> fromdate { get; set; }
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> todate { get; set; }
+        public System.DateTime fromdate { get; set; }
+        public System.DateTime todate { get; set; }
         public string skills { get; set; }
         public Nullable<long> resid { get; set; }
     }

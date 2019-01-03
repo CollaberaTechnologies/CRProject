@@ -12,6 +12,8 @@ namespace CR.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class IHD_DBEntities : DbContext
     {
@@ -35,5 +37,14 @@ namespace CR.Models
         public virtual DbSet<personal_data> personal_data { get; set; }
         public virtual DbSet<IHD_TABDOCS> IHD_TABDOCS { get; set; }
         public virtual DbSet<Reference> References { get; set; }
+    
+        public virtual ObjectResult<IHD_CRDATA_Result> IHD_CRDATA(Nullable<long> rid)
+        {
+            var ridParameter = rid.HasValue ?
+                new ObjectParameter("rid", rid) :
+                new ObjectParameter("rid", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<IHD_CRDATA_Result>("IHD_CRDATA", ridParameter);
+        }
     }
 }

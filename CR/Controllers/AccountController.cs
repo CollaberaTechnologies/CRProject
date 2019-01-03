@@ -78,6 +78,7 @@ namespace CR.Controllers
                 Session["username"] = info.FirstName;
                 Session["time"] = DateTime.Now;
                 Session["rid"] = info.RID;
+                Session["rights"] = info.AccessRights;
                 return RedirectToAction("Dashboard", "Home");
             }
             else

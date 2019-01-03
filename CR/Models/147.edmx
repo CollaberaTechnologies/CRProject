@@ -100,6 +100,9 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
           <Property Name="InvoiceLocID" Type="bigint" Nullable="false" />
           <Property Name="V5RID" Type="bigint" />
           <Property Name="pswd" Type="nvarchar" MaxLength="25" />
+          <Property Name="AddressTo" Type="nvarchar(max)" />
+          <Property Name="PersonalEmailID" Type="nvarchar" MaxLength="300" />
+          <Property Name="Department" Type="nvarchar" MaxLength="300" />
         </EntityType>
         <EntityType Name="personal_data">
           <Key>
@@ -200,6 +203,9 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="IHD_CRDATA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rid" Type="bigint" Mode="In" />
+        </Function>
         <EntityContainer Name="IHD_DBModelStoreContainer">
           <EntitySet Name="Edu_Background" EntityType="Self.Edu_Background" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IHD_CR" EntityType="Self.IHD_CR" Schema="dbo" store:Type="Tables" />
@@ -271,6 +277,9 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
           <Property Name="InvoiceLocID" Type="Int64" Nullable="false" />
           <Property Name="V5RID" Type="Int64" />
           <Property Name="pswd" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="AddressTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalEmailID" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="IHD_DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="IHD_USER_MAIN" EntityType="Self.IHD_USER_MAIN" />
@@ -287,6 +296,9 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
             <End Role="IHD_TABDOCS" EntitySet="IHD_TABDOCS" />
           </AssociationSet>
           <EntitySet Name="References" EntityType="IHD_DBModel.Reference" />
+          <FunctionImport Name="IHD_CRDATA" ReturnType="Collection(IHD_DBModel.IHD_CRDATA_Result)">
+            <Parameter Name="rid" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="IHD_CR">
           <Key>
@@ -441,6 +453,21 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
           <Property Name="contactno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="resid" Type="Int64" />
         </EntityType>
+        <ComplexType Name="IHD_CRDATA_Result">
+          <Property Type="String" Name="CreatedOn" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CreatedUser" Nullable="false" MaxLength="100" />
+          <Property Type="Int64" Name="RID" Nullable="false" />
+          <Property Type="String" Name="FullName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmailID" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+          <Property Type="Int64" Name="CreatedBy" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="MailStatus" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="ResponseDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CandidateStatus" Nullable="true" MaxLength="200" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -450,6 +477,9 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
           <EntitySetMapping Name="IHD_USER_MAIN">
             <EntityTypeMapping TypeName="IHD_DBModel.IHD_USER_MAIN">
               <MappingFragment StoreEntitySet="IHD_USER_MAIN">
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="PersonalEmailID" ColumnName="PersonalEmailID" />
+                <ScalarProperty Name="AddressTo" ColumnName="AddressTo" />
                 <ScalarProperty Name="RID" ColumnName="RID" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -635,6 +665,25 @@ warning 6002: The table/view 'IHD_DB.dbo.IHD_Tabusers' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="IHD_CRDATA" FunctionName="IHD_DBModel.Store.IHD_CRDATA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="IHD_DBModel.IHD_CRDATA_Result">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedUser" ColumnName="CreatedUser" />
+                <ScalarProperty Name="RID" ColumnName="RID" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MailStatus" ColumnName="MailStatus" />
+                <ScalarProperty Name="ResponseDate" ColumnName="ResponseDate" />
+                <ScalarProperty Name="CandidateStatus" ColumnName="CandidateStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

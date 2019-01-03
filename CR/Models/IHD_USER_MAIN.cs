@@ -51,5 +51,8 @@ namespace CR.Models
         public long InvoiceLocID { get; set; }
         public Nullable<long> V5RID { get; set; }
         public string pswd { get; set; }
+        public string AddressTo { get; set; }
+        public string PersonalEmailID { get; set; }
+        public string Department { get; set; }
     }
 }

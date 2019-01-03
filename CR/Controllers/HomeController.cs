@@ -24,10 +24,7 @@ namespace CR.Controllers
         IHD_DBEntities db = new IHD_DBEntities();
         [HttpGet]
         public ActionResult New(string id, New newinfo)
-
         {
-            //New newinfo = new Models.New();
-          
             var rid = Decrypt(id);
             newinfo.hiddenid = long.Parse(rid);
             newinfo.hiddenemail = getemail(newinfo.hiddenid);
@@ -75,11 +72,9 @@ namespace CR.Controllers
             cell.Colspan = 2;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
-
             cell = new PdfPCell(new Phrase("Basic Information"));
             cell.Colspan = 2;
             table.AddCell(cell);
-
             table.AddCell(" Contact Person:");
             table.AddCell(newinfo.personal.contactperson);
             table.AddCell(" Position Desired:");
@@ -98,7 +93,6 @@ namespace CR.Controllers
             table.AddCell(tomeet.ToShortDateString());
             table.AddCell(" Venue:");
             table.AddCell(newinfo.personal.Placetomeet);
-
             cell = new PdfPCell(new Phrase(" "));
             cell.Colspan = 2;
             table.AddCell(cell);
@@ -189,12 +183,7 @@ namespace CR.Controllers
             table.AddCell(newinfo.refrence.relationship);
             table.AddCell(" Contact Number:");
             table.AddCell(newinfo.refrence.contactno);
-
-
-
             doc.Add(table);
-          
-
             doc.Close();
 
             bPDF = ms.ToArray();
@@ -212,20 +201,6 @@ namespace CR.Controllers
             doc.OptionFixNestedTags = true;
             doc.LoadHtml(GridHtml);
             GridHtml = doc.DocumentNode.OuterHtml;
-
-            //using (MemoryStream stream = new System.IO.MemoryStream())
-            //{
-            //    StringReader sr = new StringReader(GridHtml);
-            //    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
-            //    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
-            //    pdfDoc.Open();
-
-            //    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
-            //    pdfDoc.Close();
-            //    return File(stream.ToArray(), "application/pdf", "Info.pdf");
-            //}
-            //string HTMLContent = "Hello <b>World</b>";
-
             Response.Clear();
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=" + newinfo.personal.name+".pdf");
@@ -358,8 +333,8 @@ namespace CR.Controllers
                     db.References.Add(newinfo.refrence);
                     newinfo.employeer.resid = personalrid;
                 if (newinfo.employeer.company!=null) {
-                    newinfo.employeer.todate = newinfo.todate;
-                    newinfo.employeer.fromdate = newinfo.fromdate;
+                    newinfo.employeer.todate =(DateTime)newinfo.todate;
+                    newinfo.employeer.fromdate = (DateTime)newinfo.fromdate;
                     db.Recent_Employeer.Add(newinfo.employeer);
                 }
                 db.SaveChanges();
@@ -412,97 +387,146 @@ namespace CR.Controllers
         }
         public ActionResult search(string name,string status)
         {
+            var rights= Session["rights"].ToString();
             IHD_CR cr = new IHD_CR();
             var crinfo = new List<IHD_CR>();
-            if (name == "")
+            if (rights == "4")
             {
-                if (status == "")
+                if (name == "")
                 {
-                    crinfo = db.IHD_CR.OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-                }
-                else {
-                    if (status != "All")
+                    if (status == "")
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        crinfo = db.IHD_CR.Where(x => x.Type == "Public").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
                     }
                     else
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        if (status != "All")
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.Type == "Public").Where(x => x.CandidateStatus == status).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+                        else
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.Type == "Public").Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+
                     }
 
-                }
-              
 
-            }
-            else
-            {
-                if (status == "")
-                {
-                    crinfo = db.IHD_CR.Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
                 }
                 else
                 {
-                    if (status != "All")
+                    if (status == "")
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status && (x.FullName.Contains(name) || x.EmailID.Contains(name))).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        crinfo = db.IHD_CR.Where(x => x.Type == "Public").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
                     }
                     else
                     {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired" ).Where(x=>x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-                    }
-                    
-                }
-                
-            }
+                        if (status != "All")
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.Type == "Public").Where(x => x.CandidateStatus == status && (x.FullName.Contains(name) || x.EmailID.Contains(name))).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+                        else
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.Type == "Public").Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
 
+                    }
+
+                }
+            }
+            else
+            {
+                if (name == "")
+                {
+                    if (status == "")
+                    {
+                        crinfo = db.IHD_CR.OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                    }
+                    else
+                    {
+                        if (status != "All")
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+                        else
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+
+                    }
+
+
+                }
+                else
+                {
+                    if (status == "")
+                    {
+                        crinfo = db.IHD_CR.Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                    }
+                    else
+                    {
+                        if (status != "All")
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status && (x.FullName.Contains(name) || x.EmailID.Contains(name))).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+                        else
+                        {
+                            crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+                        }
+
+                    }
+
+                }
+
+            }
             return Json(crinfo, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult searchstatus(string status,string name)
-        {
-            IHD_CR cr = new IHD_CR();
-            var crinfo = new List<IHD_CR>();
-            if (status == "")
+        //public ActionResult searchstatus(string status,string name)
+        //{
+        //    IHD_CR cr = new IHD_CR();
+        //    var crinfo = new List<IHD_CR>();
+        //    if (status == "")
            
-            {
-                if (name=="")
-                {
-                    crinfo = db.IHD_CR.OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-                }
-                else
-                {
-                    crinfo = db.IHD_CR.Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+        //    {
+        //        if (name=="")
+        //        {
+        //            crinfo = db.IHD_CR.OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+        //        }
+        //        else
+        //        {
+        //            crinfo = db.IHD_CR.Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
 
-                }
+        //        }
               
-            }
-            else
-            {
-                if (status == "All") {
-                    if (name == "")
-                    {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus== "Rejected" || x.CandidateStatus== "Hired").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-                    }
-                    else
-                    {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-                    }
-                }
-                else
-                {
-                    if (name == "")
-                    {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status).Take(8).OrderByDescending(x => x.CreatedDate).ToList();
-                    }
-                    else
-                    {
-                        crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status && (x.FullName.Contains(name) || x.EmailID.Contains(name))).Take(8).OrderByDescending(x => x.CreatedDate).ToList();
-                    }
-                }
+        //    }
+        //    else
+        //    {
+        //        if (status == "All") {
+        //            if (name == "")
+        //            {
+        //                crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus== "Rejected" || x.CandidateStatus== "Hired").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+        //            }
+        //            else
+        //            {
+        //                crinfo = db.IHD_CR.Where(x => x.CandidateStatus == "Pending" || x.CandidateStatus == "Rejected" || x.CandidateStatus == "Hired").Where(x => x.FullName.Contains(name) || x.EmailID.Contains(name)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (name == "")
+        //            {
+        //                crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status).Take(8).OrderByDescending(x => x.CreatedDate).ToList();
+        //            }
+        //            else
+        //            {
+        //                crinfo = db.IHD_CR.Where(x => x.CandidateStatus == status && (x.FullName.Contains(name) || x.EmailID.Contains(name))).Take(8).OrderByDescending(x => x.CreatedDate).ToList();
+        //            }
+        //        }
               
-            }
-            return Json(crinfo, JsonRequestBehavior.AllowGet);
+        //    }
+        //    return Json(crinfo, JsonRequestBehavior.AllowGet);
     
-        }
+        //}
         public ActionResult changemailstatus(long rid)
         {
             try
@@ -555,19 +579,30 @@ namespace CR.Controllers
         }
         public ActionResult Dashboard()
         {
-            mail mailinfo = new mail();
-            var crrinfo = db.IHD_CR.OrderByDescending(x=>x.CreatedDate).Take(4).ToList();
-            var crrinfo2 = db.IHD_CR.OrderByDescending(x => x.CreatedDate).Take(8).ToList();
-            if (Session["username"]==null)
+            if (Session["username"] == null)
             {
-                return RedirectToAction("Login","Account");
+                return RedirectToAction("Login", "Account");
             }
-            var info1= new List<IHD_CR>();
-            var info2= new List<IHD_CR>();
-           
-            ViewBag.info1 = crrinfo;
-            ViewBag.info = crrinfo2.Skip(4);
-       
+            ViewBag.rights = Session["rights"].ToString();
+            var rid= (long)Session["rid"];
+            mail mailinfo = new mail();
+            ViewBag.info1 = db.IHD_CRDATA(rid);
+            //if (Session["rights"].ToString() == "3")
+            //{
+            //    var crrinfo = db.IHD_CR.Where(x=>x.Type== "Public"||(x.Type== "Confidencial"&&x.CreatedBy==rid)).OrderByDescending(x => x.CreatedDate).Take(4).ToList();
+            //    var crrinfo2 = db.IHD_CR.Where(x => x.Type == "Public" || (x.Type == "Confidencial" && x.CreatedBy == rid)).OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+            //    ViewBag.info1 = crrinfo;
+            //    ViewBag.info = crrinfo2.Skip(4);
+            //}
+            //else
+            //{
+            //    var crrinfo = db.IHD_CR.Where(x=>x.Type== "Public").OrderByDescending(x => x.CreatedDate).Take(4).ToList();
+            //    var crrinfo2 = db.IHD_CR.Where(x=>x.Type== "Public").OrderByDescending(x => x.CreatedDate).Take(8).ToList();
+            //    ViewBag.info1 = crrinfo;
+            //    ViewBag.info = crrinfo2.Skip(4);
+            //}
+
+
             mailinfo.emailbody = "<div><b>Dear Candidate</b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>We are pleased to inform you that we are moving ahead with your candidature with Collabera.</b></div><div><b><br></b></div><div><b>Please help us with with your further details mentioned on below given link:</b></div><div><b><br></b></div><div>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://172.20.30.147:8096/Home/New?id=crrid'>Click Here</a><b></b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>Please feel free to reach out to us on below details:</b></div><div><b><br></b></div><div><b>Email ID: hcv@collabera.com</b></div><div><b><br></b></div><div><b>Contact No: +0265 457896123/5789461323</b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>Thanks &amp; Regards</b></div><div><b><br></b></div><div><b>COLLABERA</b></div>";
 
             return View(mailinfo);

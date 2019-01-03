@@ -94,3 +94,27 @@ User Host IP: ::1
 
 
 
+-----------Exception Details on  1/3/2019 3:14:01 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 1/3/2019 3:14:01 PM
+
+Error Line No : ine 693
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/Email
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+

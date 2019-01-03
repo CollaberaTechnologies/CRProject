@@ -10,10 +10,11 @@
 namespace CR.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class IHD_CR
+    public partial class IHD_CRDATA_Result
     {
+        public string CreatedOn { get; set; }
+        public string CreatedUser { get; set; }
         public long RID { get; set; }
         public string FullName { get; set; }
         public string EmailID { get; set; }

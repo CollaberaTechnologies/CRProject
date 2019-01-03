@@ -631,7 +631,26 @@
                                 </div>
                             </div>
                         </div>
+                        @if (ViewBag.rights=="4") {
+                        <div class="col-md-6 d1" style="width:25%;">
+                            <div class="form-group">
+                                <!--dropdown for from date-->
+                                <label class="card-label">Hiring Type<span style="color:red;">*</span></label>
+                                <div class="">
+                                    @Html.DropDownList("hiretypes", new List<SelectListItem>
+                    {
+                               new SelectListItem {Text="Hiring Type",Value="0" },
+                  
+                    new SelectListItem{ Text="Public", Value = "2" },
 
+
+                    }, new { @class = "form-control text-box single-line", @id = "hiretypes", @style = "height:34px;" })
+                                    @Html.ValidationMessageFor(Model => Model.hiretype, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if(ViewBag.rights=="3") {
                         <div class="col-md-6 d1" style="width:25%;">
                             <div class="form-group">
                                 <!--dropdown for from date-->
@@ -649,6 +668,7 @@
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-primary" value="Next" id="nextbtn" style="border-color: #3472F7;color: #3472F7;background-color: #3472F7;color: white;" />
@@ -723,9 +743,10 @@
     </div>
     <div class="panel-body" style="margin-top:5%;" id="cardsdiv">
         <div class="col-md-12" style="padding-left: 41px;padding-right: 0px;">
+            @Html.Hidden("rights", ViewBag.rights as string)
             @foreach (var item in ViewBag.info1)
             {
-                <div class="col-md-3">
+                <div class="col-md-3" style="margin-top:22px;">
                     <div class="flip-card" onclick="flip(this)">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
@@ -754,9 +775,9 @@
                             </div>
                             <div class="flip-card-back">
                                 <p class="card-text">
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:9px;margin-left:9px;"></i>Created Date: @Html.Encode(@item.CreatedDate)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:9px;margin-left:9px;"></i>Created Date: @Html.Encode(@item.CreatedOn)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:16px;margin-left:9px;"></i>Created By: @Html.Encode(@item.CreatedBy)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:16px;margin-left:9px;"></i>Created By: @Html.Encode(@item.CreatedUser)</p>
                                 <hr style="margin-top:0px;" />
                                 <p class="card-text" style=" font-family:Calibri"><i class="fa fa-suitcase" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Type: @Html.Encode(@item.Type)</p>
                                 <hr style="margin-top:0px;" />
@@ -775,7 +796,7 @@
             }
 
         </div>
-        <div class="col-md-12" style="padding-left: 41px;padding-right: 0px;">
+        @*<div class="col-md-12" style="padding-left: 41px;padding-right: 0px;">
             @foreach (var item in ViewBag.info)
             {
                 <div class="col-md-3" style="margin-top:36px;">
@@ -826,7 +847,7 @@
                 </div>
             }
 
-        </div>
+        </div>*@
 
 
     </div>
@@ -1007,6 +1028,59 @@
             + "/" + (d.getDate() + "").padStart(2, "0")
             + "/" + d.getFullYear();
     }
+    function search(name, status) {
+        var rights = $("#rights").val();
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("search")',
+            contentType: "application/json ",
+            data: { name: name, status: status },
+            datatype: "json",
+            success: function (infodata) {
+                var candidatedata = infodata;
+                var data = "";
+                for (var i in candidatedata) {
+                    data += "<div class='col-md-3' style='margin-top:22px;'><div class='flip-card' onclick='flip(this)'>"
+                    data += "<div class='flip-card-inner'>"
+                    data += "<div class='flip-card-front'>"
+                    data += "<p class='card-text'>"
+                    data += "<p class='card-text' style=' font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;'>" + candidatedata[i].FullName + "</p>"
+                    data += "<hr style='margin-top:0px;' />"
+                    data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID' style='margin-left:9px;padding-right:16px;'></i>" + candidatedata[i].EmailID + "</p>"
+                    data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
+                    data += "<hr style='margin-top:0px;' /></p>"
+                    data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
+                    data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a> "
+                    if (candidatedata[i].MailStatus == "Submitted") {
+                        data += "<a href='/Home/download?id=" + candidatedata[i].RID + "' target='_blank'  data-toggle='tooltip' title='Download Resume ' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
+                        data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank'data-toggle='tooltip' title='View Form'  class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
+                    }
+                    data += "</div></div>"
+                    data += "<div class='flip-card-back'><p class='card-text'>"
+                    data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;margin-left:9px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;margin-left:9px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
+                    data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
+                    data += "<hr style='margin-top:0px;' /></p>"
+                    data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
+                    data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a>"
+                    data += "</div></div></div></div></div>"
+                }
+                if (data == "") {
+                    $("#cardsdiv").empty();
+                    $("#cardsdiv").html("No Result find")
+                }
+                else {
+                    $("#cardsdiv").empty();
+                    $("#cardsdiv").html(data)
+                }
+            },
+        });
+
+    }
     $(document).ready(function () {
 
         $('#status').on('show.bs.modal', function (e) {
@@ -1024,111 +1098,15 @@
             debugger;
             var searchstatus = $("#searchstatus").val();
             var value = $("#searchdata").val().toLowerCase();
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("searchstatus")',
-                contentType: "application/json ",
-                data: { status: searchstatus,name:value },
-                datatype: "json",
-                success: function (infodata) {
-                    var candidatedata = infodata;
-                    var data = "";
-                    for (var i in candidatedata) {
-                        data += "<div class='col-md-3' style='margin-top:22px;'><div class='flip-card' onclick='flip(this)'>"
-                        data += "<div class='flip-card-inner'>"
-                        data += "<div class='flip-card-front'>"
-                        data += "<p class='card-text'>"
-                        data += "<p class='card-text' style='font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;'>" + candidatedata[i].FullName + "</p>"
-                        data += "<hr style='margin-top:0px;' />"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID' style='margin-left:9px;'></i>" + candidatedata[i].EmailID + "</p>"
-                        data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
-                        data += "<hr style='margin-top:0px;' /></p>"
-                        data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
-                        data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a> "
-                        if (candidatedata[i].MailStatus == "Submitted") {
-                            data += "<a href='/Home/download?id="+candidatedata[i].RID  +"' target='_blank'  data-toggle='tooltip' title='Download Resume ' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
-                            data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank'data-toggle='tooltip' title='View Form'  class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
-
-                        }
-                      data+="</div></div>"
-                        data += "<div class='flip-card-back'><p class='card-text'>"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;margin-left:9px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;margin-left:9px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
-                        data += "<hr style='margin-top:0px;' /></p>"
-                        data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
-                        data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a>"
-                        data += "</div></div></div></div></div>"
-                    }
-                    if (data == "") {
-                        $("#cardsdiv").empty();
-                        $("#cardsdiv").html("No Result find")
-                    }
-                    else {
-                        $("#cardsdiv").empty();
-                        $("#cardsdiv").html(data)
-                    }
-                },
-            });
+          search(value,searchstatus);
         });
         $("#searchdata").on("keyup", function () {
             //$("#cardsdiv").empty();
             debugger;
             var value = $(this).val().toLowerCase();
             var searchstatus = $("#searchstatus").val();
-            $.ajax({
-                type: "GET",
-                url: '@Url.Action("search")',
-                contentType: "application/json ",
-                data: { name: value, status: searchstatus },
-                datatype: "json",
-                success: function (infodata) {
-                    var candidatedata = infodata;
-                    var data = "";
-                    for (var i in candidatedata) {
-                        data+="<div class='col-md-3' style='margin-top:22px;'><div class='flip-card' onclick='flip(this)'>"
-                         data+="<div class='flip-card-inner'>"
-                         data+= "<div class='flip-card-front'>"
-                         data+= "<p class='card-text'>"
-                         data+= "<p class='card-text' style=' font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;'>"+candidatedata[i].FullName+"</p>"
-                         data+=   "<hr style='margin-top:0px;' />"
-                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID' style='margin-left:9px;padding-right:16px;'></i>" + candidatedata[i].EmailID + "</p>"
-                         data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
-                         data+="<hr style='margin-top:0px;' /></p>"
-                         data+="<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
-                         data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a> "
-                         if (candidatedata[i].MailStatus == "Submitted") {
-                             data += "<a href='/Home/download?id=" + candidatedata[i].RID + "' target='_blank'  data-toggle='tooltip' title='Download Resume ' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
-                             data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank'data-toggle='tooltip' title='View Form'  class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
-  }
-                         data += "</div></div>"
-                         data+="<div class='flip-card-back'><p class='card-text'>"
-                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;margin-left:9px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;margin-left:9px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
-                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
-                         data+="<hr style='margin-top:0px;' /></p>"
-                         data+="<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
-                         data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a>"
-                          data+="</div></div></div></div></div>"
-                    }
-                    if (data == "") {
-                        $("#cardsdiv").empty();
-                        $("#cardsdiv").html("No Result find")
-                    }
-                    else {
-                        $("#cardsdiv").empty();
-                        $("#cardsdiv").html(data)
-                    }
-                },
-            });
+            search(value, searchstatus);
+         
         });
         $("#savebtns").click(function () {
  

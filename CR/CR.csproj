@@ -241,6 +241,9 @@
     <Compile Include="Models\IHD_CR.cs">
       <DependentUpon>147.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IHD_CRDATA_Result.cs">
+      <DependentUpon>147.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IHD_TABDOCS.cs">
       <DependentUpon>147.tt</DependentUpon>
     </Compile>
