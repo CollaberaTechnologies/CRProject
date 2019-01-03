@@ -9,7 +9,13 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 using System.Configuration;
-using CR.Models;
+
+using iTextSharp.text;
+using iTextSharp.tool;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using HtmlAgilityPack;
+using iTextSharp.text.html.simpleparser;
 
 namespace CR.Controllers
 {
@@ -17,25 +23,252 @@ namespace CR.Controllers
     {
         IHD_DBEntities db = new IHD_DBEntities();
         [HttpGet]
-        public ActionResult New(string id)
+        public ActionResult New(string id, New newinfo)
+
         {
-            New newinfo = new Models.New();
-           
+            //New newinfo = new Models.New();
+          
             var rid = Decrypt(id);
             newinfo.hiddenid = long.Parse(rid);
+            newinfo.hiddenemail = getemail(newinfo.hiddenid);
             var data = db.IHD_CR.Where(x => x.RID == newinfo.hiddenid && x.MailStatus == "Submitted").FirstOrDefault();
+            
             if (data==null)
             {
-              
                 return View(newinfo);
             }
             else
             {
                 TempData["RID"] = data.RID;
                 TempData["msg"] = "You already Submitted your data!";
-                return RedirectToAction("viewdata");
+                var rinfo = data.RID;
+                return RedirectToAction("viewdata",  new { id = rinfo });
             }
            
+        }
+        public string getemail(long rid)
+        {
+            string emailid = db.IHD_CR.Where(x => x.RID == rid).Select(x => x.EmailID).FirstOrDefault(); 
+            return emailid;
+        }
+        public byte[] GetPDF(string pHTML,New newinfo)
+        {
+            byte[] bPDF = null;
+
+            MemoryStream ms = new MemoryStream();
+            TextReader txtReader = new StringReader(pHTML);
+
+            // 1: create object of a itextsharp document class
+            Document doc = new Document(PageSize.A4, 25, 25, 25, 25);
+
+            // 2: we create a itextsharp pdfwriter that listens to the document and directs a XML-stream to a file
+            PdfWriter oPdfWriter = PdfWriter.GetInstance(doc, ms);
+
+            // 3: we create a worker parse the document
+            //HTMLWorker htmlWorker = new HTMLWorker(doc);
+
+            // 4: we open document and start the worker on the document
+            doc.Open();
+            PdfPTable table = new PdfPTable(2);
+
+            PdfPCell cell = new PdfPCell(new Phrase("Candidate Info"));
+            cell.Colspan = 2;
+            cell.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(cell);
+
+            cell = new PdfPCell(new Phrase("Basic Information"));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+
+            table.AddCell(" Contact Person:");
+            table.AddCell(newinfo.personal.contactperson);
+            table.AddCell(" Position Desired:");
+            table.AddCell(newinfo.personal.Posdesire);
+            table.AddCell(" Expected Salary:");
+            table.AddCell(newinfo.personal.expsalary.ToString());
+            table.AddCell(" Preferred Work Locations:");
+            table.AddCell(newinfo.personal.Preferloc);
+            table.AddCell(" Availability On-Board:");
+            DateTime onboard = (DateTime)newinfo.personal.Datetimetomeet;
+            table.AddCell(onboard.ToShortDateString());
+            table.AddCell(" Current CTC:");
+            table.AddCell(newinfo.personal.CurrentCTC.ToString());
+            table.AddCell(" Inperson Interview:");
+            DateTime tomeet = (DateTime)newinfo.personal.Datetimetomeet;
+            table.AddCell(tomeet.ToShortDateString());
+            table.AddCell(" Venue:");
+            table.AddCell(newinfo.personal.Placetomeet);
+
+            cell = new PdfPCell(new Phrase(" "));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Personal Data"));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            table.AddCell(" Name:");
+            table.AddCell(newinfo.personal.name);
+            table.AddCell(" Address:");
+            table.AddCell(newinfo.personal.Address);
+            table.AddCell(" EmailID:");
+            table.AddCell(newinfo.personal.EmailId);
+            table.AddCell(" Mobile:");
+            table.AddCell(newinfo.personal.Mobile);
+            if (newinfo.personal.Phone_ != null)
+            {
+                table.AddCell(" Phone:");
+                table.AddCell(newinfo.personal.Phone_);
+            }
+            table.AddCell(" Gender:");
+            table.AddCell(newinfo.personal.Gender);
+            table.AddCell(" Date of Birth:");
+            table.AddCell(newinfo.personal.Dob.ToShortDateString());
+            table.AddCell(" Age:");
+            table.AddCell(newinfo.personal.Age.ToString());
+            table.AddCell(" Marital Status:");
+            table.AddCell(newinfo.personal.Maritalstatus);
+            cell = new PdfPCell(new Phrase(" "));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Additional Information"));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            table.AddCell(" Language Known:");
+            table.AddCell(newinfo.personal.LanguagesKnown);
+            table.AddCell(" How did you get to know about Collabera ?");
+            table.AddCell(newinfo.personal.HowKnowAboutCollabera);
+            table.AddCell("What do you Know about Collabera ?");
+            table.AddCell(newinfo.personal.WhatKnownAboutCollabera);
+            table.AddCell(" What are your Career aspirations ?");
+            table.AddCell(newinfo.personal.Careeraspirations);
+            table.AddCell(" Why do you think you will be suitable for this job?");
+            table.AddCell(newinfo.personal.strengthsandweakness);
+            cell = new PdfPCell(new Phrase(" "));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Educational Background"));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            table.AddCell(" Course:");
+            table.AddCell(newinfo.edu.course);
+            table.AddCell(" Year Graduated:");
+            table.AddCell(newinfo.edu.Yrgraduated);
+            table.AddCell(" School/University:");
+            table.AddCell(newinfo.edu.SchoolUniversity);
+            table.AddCell(" Other Trainings Attended:");
+            table.AddCell(newinfo.edu.Othertrainings);
+            cell = new PdfPCell(new Phrase(" "));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            if (newinfo.employeer != null)
+            {
+                cell = new PdfPCell(new Phrase("Recent Employeer"));
+                cell.Colspan = 2;
+                table.AddCell(cell);
+                table.AddCell(" Position:");
+                table.AddCell(newinfo.employeer.position);
+                table.AddCell(" Company:");
+                table.AddCell(newinfo.employeer.company);
+                table.AddCell(" From Date:");
+                DateTime fromdate = (DateTime)newinfo.fromdate;
+                table.AddCell(fromdate.ToShortDateString());
+                table.AddCell(" To Date:");
+                DateTime todate = (DateTime)newinfo.todate;
+                table.AddCell(todate.ToShortDateString());
+                table.AddCell(" Skills/Technology Used:");
+                table.AddCell(newinfo.employeer.skills);
+                cell = new PdfPCell(new Phrase(" "));
+                cell.Colspan = 2;
+                table.AddCell(cell);
+            }
+            cell = new PdfPCell(new Phrase("References"));
+            cell.Colspan = 2;
+            table.AddCell(cell);
+            table.AddCell(" Name:");
+            table.AddCell(newinfo.refrence.name);
+            table.AddCell(" Relationship:");
+            table.AddCell(newinfo.refrence.relationship);
+            table.AddCell(" Contact Number:");
+            table.AddCell(newinfo.refrence.contactno);
+
+
+
+            doc.Add(table);
+          
+
+            doc.Close();
+
+            bPDF = ms.ToArray();
+
+            return bPDF;
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public void Export(string GridHtml,New newinfo)
+        {
+            HtmlNode.ElementsFlags["img"] = HtmlElementFlag.Closed;
+            HtmlNode.ElementsFlags["input"] = HtmlElementFlag.Closed;
+            HtmlNode.ElementsFlags["br"] = HtmlElementFlag.Closed;
+            HtmlDocument doc = new HtmlDocument();
+            doc.OptionFixNestedTags = true;
+            doc.LoadHtml(GridHtml);
+            GridHtml = doc.DocumentNode.OuterHtml;
+
+            //using (MemoryStream stream = new System.IO.MemoryStream())
+            //{
+            //    StringReader sr = new StringReader(GridHtml);
+            //    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+            //    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, stream);
+            //    pdfDoc.Open();
+
+            //    XMLWorkerHelper.GetInstance().ParseXHtml(writer, pdfDoc, sr);
+            //    pdfDoc.Close();
+            //    return File(stream.ToArray(), "application/pdf", "Info.pdf");
+            //}
+            //string HTMLContent = "Hello <b>World</b>";
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=" + newinfo.personal.name+".pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.BinaryWrite(GetPDF(GridHtml,newinfo));
+            Response.End();
+        }
+        public ActionResult sendotp(string emailid)
+        {
+            Random r = new Random();
+            long no = r.Next(0, 999999);
+            try
+            {
+               
+                var fromadrress = "garima.thakore" + "@collabera.com";
+                var message = new MailMessage();
+                message.From = new MailAddress(fromadrress);  // replace with valid value
+                message.Subject = "OTP Verification";
+                message.Body = "<p>Dear Applicant,</p><p>Your One Time Password (OTP) for Email Verification is " + no + " </p><p>Please enter the code and verify Email-Id.</p><p><span style='font - size:12.0pt; font - family:&quot; Times New Roman & amp; quot;,&quot; serif & amp; quot; ; mso - fareast - font - family:Calibri; mso - fareast - theme - font:minor - latin; mso - ansi - language:EN - US; mso - fareast - language:EN - US; mso - bidi - language:AR - SA'><br></span></p><p class='MsoNormal'><strong>Thanks &amp; Regards</strong></p><p><strong>COLLABERA</strong></p>";
+                message.IsBodyHtml = true;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "mailbrd.collabera.com",
+
+                    Port = 25,
+                    EnableSsl = false,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+
+                };
+                message.To.Add(new MailAddress(emailid));
+              
+                smtp.Send(message);
+
+            }
+            catch (Exception ex)
+            {
+                string ip = Request.UserHostAddress;
+                errorinfo.SendErrorToText(ex, ip);
+
+            }
+            return Json(no, JsonRequestBehavior.AllowGet);
         }
         public void download(long id)
         {
@@ -88,7 +321,19 @@ namespace CR.Controllers
             newinfo.age = personal.Age;
             newinfo.employeer = employee;
             newinfo.refrence = refer;
-            
+            if (employee!=null) {
+                newinfo.fromdate = employee.fromdate;
+                newinfo.todate = employee.todate;
+            }
+            if (TempData["RID"] != null)
+            {
+                id = (long)TempData["RID"];
+            }
+
+            if (TempData["msg"] != null)
+            {
+                ViewBag.message = TempData["msg"].ToString();
+            }
             return View(newinfo);
 
         }
@@ -96,7 +341,7 @@ namespace CR.Controllers
         [ValidateAntiForgeryToken]
         
         [HttpPost]
-        public ActionResult New(New newinfo, HttpPostedFileBase file_uploader)
+        public ActionResult New(New newinfo, HttpPostedFileBase file_uploader,DateTime? fromDate1=null,DateTime? toDate1=null)
         {
             try
             {
@@ -113,6 +358,8 @@ namespace CR.Controllers
                     db.References.Add(newinfo.refrence);
                     newinfo.employeer.resid = personalrid;
                 if (newinfo.employeer.company!=null) {
+                    newinfo.employeer.todate = newinfo.todate;
+                    newinfo.employeer.fromdate = newinfo.fromdate;
                     db.Recent_Employeer.Add(newinfo.employeer);
                 }
                 db.SaveChanges();
@@ -121,8 +368,9 @@ namespace CR.Controllers
                     upload(file_uploader, personalrid);
                 }
                 TempData["msg"] = "Your Data is Submitted!";
-                TempData["RID"] = newinfo.hiddenid;
-                return RedirectToAction("viewdata");
+                //TempData["RID"] = newinfo.hiddenid;
+               var rid = newinfo.hiddenid;
+                return RedirectToAction("viewdata", new { id = rid });
 
             }
             catch(Exception ex)
@@ -257,10 +505,43 @@ namespace CR.Controllers
         }
         public ActionResult changemailstatus(long rid)
         {
-            var data = db.IHD_CR.Where(x => x.RID == rid).FirstOrDefault();
-            data.MailStatus = "Submitted";
-            db.Configuration.ValidateOnSaveEnabled = false;
-            db.SaveChanges();
+            try
+            {
+                var data = db.IHD_CR.Where(x => x.RID == rid).FirstOrDefault();
+                data.MailStatus = "Submitted";
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.SaveChanges();
+                var to = db.IHD_USER_MAIN.Where(x => x.RID == data.CreatedBy).Select(x => x.EmailID).FirstOrDefault();
+                var name= db.IHD_USER_MAIN.Where(x => x.RID == data.CreatedBy).Select(x => x.FirstName).FirstOrDefault();
+                var fromadrress = "garima.thakore" + "@collabera.com";
+                var message = new MailMessage();
+                message.From = new MailAddress(fromadrress);  // replace with valid value
+                message.Subject = "Candidate Submitted Information";
+                message.Body = "<p>Hello "+ name + ",</p><p><br></p><p>"+data.FullName+" has submitted the application form. Please check the filled details on the portal</p><p class='MsoNormal'><o:p>&nbsp;</o:p></p><p class='MsoNormal'><strong>Thanks &amp; Regards</strong></p><p></p><p class='MsoNormal'><strong>COLLABERA</strong></p>";
+                message.IsBodyHtml = true;
+
+                var smtp = new SmtpClient
+                {
+                    Host = "mailbrd.collabera.com",
+
+                    Port = 25,
+                    EnableSsl = false,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+
+                };
+                message.To.Add(new MailAddress(to));
+              
+
+                smtp.Send(message);
+
+
+            }
+            catch (Exception ex)
+            {
+                string ip = Request.UserHostAddress;
+                errorinfo.SendErrorToText(ex, ip);
+            }
             return null;
         }
         public ActionResult changestatus(long rid,string status)

@@ -147,7 +147,7 @@ $(document).ready(function () {
     });
 
     $('#dob').change(function (e) {
-        debugger;
+       
         var dob = convertDateToYear($('#dob').val());
         var today = convertDateToYear(new Date());
         var parseDob = parseInt(dob);
@@ -399,60 +399,14 @@ function deleteDiv(control) {
 // }
 
 function validate() {
-    debugger;
+
     var isValidated = true;
     var msg = '';
     
     if ($('#contactPerson').val() == '') {
         isValidated = false;
         msg += 'Contact Person is required \n';
-    } else {
-        //var found = currentEmployeesArray.some(function (el) {
-        //    return el.Email === $('#contactPerson').val();
-        //});
-        //if (!found) {
-        //    isValidated = false;
-        //    msg += 'Enter proper Contact Person Name \n';
-        //}
-    }
-    
-    if ($('#candidateName').val() == '') {
-        isValidated = false;
-        msg += 'Name is required \n';
-    }
-    if ($('#txtlanguage').val() == '') {
-        isValidated = false;
-        msg += 'Language Known is required \n';
-    }
-   
-    if ($('#txtKnow').val() == '') {
-        isValidated = false;
-        msg += 'What do you Known Collabera is required \n';
-    }
-
-    if ($('#txtaspiration').val() == '') {
-        isValidated = false;
-        msg += 'What are your Career aspirations is required \n';
-    }
-    if ($('#EmailId').val() == '') {
-        isValidated = false;
-        msg += 'EmailId is required \n';
-    }
-    else if ((/^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;]{0,1}\s*)+$/.test($('#EmailId').val()))) { 
-    }
-    else {
-        isValidated = false;
-        msg += "Please Enter correct Email-Id\n";
-
-    }
-    if ($('#CurrentCTC').val() == '') {
-        isValidated = false;
-        msg += 'CurrentCTC is required \n';
-    }
-   if ($('#Placetomeet').val() == '') {
-        isValidated = false;
-        msg += 'Placetomeet is required \n';
-    }
+    } 
     if ($('#positionDesired').val() == '') {
         isValidated = false;
         msg += 'Position Desired is required \n';
@@ -461,25 +415,52 @@ function validate() {
         isValidated = false;
         msg += 'Expected Salary is required \n';
     }
-    if ($('#availabilityBoard').val() == '') {
+   if ($('#workLocation').val() == '') {
         isValidated = false;
-        msg += 'Availability on board is required \n';
-    } else if (new Date($('#availabilityBoard').val()) < new Date()) {
+        msg += 'Work Location is required \n';
+   }
+   if ($('#availabilityBoard').val() == '') {
+       isValidated = false;
+       msg += 'Availability on board is required \n';
+   } else if (new Date($('#availabilityBoard').val()) < new Date()) {
+       isValidated = false;
+       msg += "Availability on board date should be greater than today's Date \n";
+   } else {
+
+   }
+   if ($('#Datetimetomeet').val() == '') {
+       isValidated = false;
+       msg += 'Inperson Interview Date is required \n';
+   } else if (new Date($('#Datetimetomeet').val()) < new Date()) {
+       isValidated = false;
+       msg += "Inperson Interview Date should be greater than today's Date \n";
+   } else {
+
+   }
+   if ($('#CurrentCTC').val() == '') {
+       isValidated = false;
+       msg += 'CurrentCTC is required \n';
+   }
+   if ($('#Placetomeet').val() == '') {
+       isValidated = false;
+       msg += 'Venue is required \n';
+   }
+
+    if ($('#candidateName').val() == '') {
         isValidated = false;
-        msg += "Availability on board date should be greater than today's Date \n";
-    } else {
-       
+        msg += 'Name is required \n';
     }
-    if ($('#Datetimetomeet').val() == '') {
+    if ($('#EmailId').val() == '') {
         isValidated = false;
-        msg += 'Date time to meet is required \n';
-    } else if (new Date($('#Datetimetomeet').val()) < new Date()) {
-        isValidated = false;
-        msg += "Date time to meet  should be greater than today's Date \n";
-    } else {
-       
+        msg += 'EmailId is required \n';
     }
-   
+    else if ((/^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;]{0,1}\s*)+$/.test($('#EmailId').val()))) {
+    }
+    else {
+        isValidated = false;
+        msg += "Please Enter correct Email-Id\n";
+
+    }
 
     if ($('#candidateAddress').val() == '') {
         isValidated = false;
@@ -497,7 +478,7 @@ function validate() {
         isValidated = false;
         msg += 'Date of Birth is required \n';
     } else {
-        
+
     }
 
     if ($('#age').val() == '') {
@@ -509,6 +490,31 @@ function validate() {
         msg += 'Marital Status is required \n';
     }
 
+    if ($('#txtlanguage').val() == '') {
+        isValidated = false;
+        msg += 'Language Known is required \n';
+    }
+ 
+
+    if ($('#txtKnow').val() == '') {
+        isValidated = false;
+        msg += 'What do you Known Collabera is required \n';
+    }
+
+    if ($('#txtaspiration').val() == '') {
+        isValidated = false;
+        msg += 'What are your Career aspirations is required \n';
+    }
+    if ($('#txtStrengthAndWeakness').val() == '') {
+        isValidated = false;
+        msg += 'Why do you think you will be suitable for this job is required \n';
+    }
+    
+    if ($('#file_uploader').val() == '') {
+        isValidated = false;
+        msg += 'Please upload Resume \n';
+    }
+  
     $('.educationDetailsDiv').each(function () {
         if ($(this).find('.course').val() == '') {
             isValidated = false;
@@ -541,6 +547,7 @@ function validate() {
         isValidated = false;
         msg += 'Please enter Reference Relationship \n';
     }
+ 
 
     if ($('input[name=declaration]:checked').length <= 0) {
         isValidated = false;
@@ -561,7 +568,7 @@ function validate() {
 
 //});
 $('#EmailId').change(function () {
-    debugger;
+
     if ((/^((\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)\s*[;]{0,1}\s*)+$/.test($('#EmailId').val()))) {
     }
     else {

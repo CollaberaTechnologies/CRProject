@@ -485,7 +485,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 form-group text-right">
                                                     <label class="cust-title">
-                                                        Date and Time (dd/mm/yyyy) :
+                                                        Date and Time :
                                                         <span id="currentDateTime"></span>
                                                     </label>
                                                 </div>
@@ -556,7 +556,7 @@
                                                 </div>
                                                 <div class="custpos col-md-6 form-group">
                                                     <label class="cust-title">
-                                                        Date and Time to meet:
+                                                        Inperson Interview:
                                                         <span class="reqfield">*</span>
                                                     </label>
                                                     <!--<input type="date" name="availabilityBoard" id="availabilityBoard" class="form-control" placeholder="Your Answer">-->
@@ -574,7 +574,7 @@
                                                 </div>
                                                 <div class="custpos col-md-6 form-group">
                                                     <label class="cust-title">
-                                                        Place to meet
+                                                        Venue:
                                                         <span class="reqfield">*</span>
                                                     </label>
                                                     @Html.EditorFor(Model => Model.personal.Placetomeet, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "Placetomeet", type = "text", required = "required" } })
@@ -619,7 +619,7 @@
                                                     EmailID:
                                                     <span class="reqfield">*</span>
                                                 </label>
-                                                @Html.EditorFor(Model => Model.personal.EmailId, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "EmailId", type = "Email", required = "required" } })
+                                                @Html.EditorFor(Model => Model.personal.EmailId, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", @id = "EmailId", type = "Email", @readonly = "readonly", required = "required" } })
                                                 @*@Html.ValidationMessageFor(Model => Model.personal.Address, "", new { @class = "text-danger" })*@
                                                 @*<input type="text" name="candidateAddress" id="candidateAddress" class="form-control" placeholder="Your Answer">*@
                                             </div>
@@ -675,19 +675,6 @@
                                                     </span>
                                                 </div>
                                             </div>
-
-                                            <div class="col-md-4 form-group">
-                                                <label class="cust-title">
-                                                    Age:
-                                                    <span class="reqfield">* </span>
-                                                </label>
-                                                @Html.EditorFor(Model => Model.personal.Age, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", type = "number", disabled = "disabled", required = "required" } })
-                                                @*@Html.ValidationMessageFor(Model => Model.personal.Age, "", new { @class = "text-danger" })*@
-                                                @*<input type="hidden" name="age" id="age" class="form-control" dataType="number" disabled="disabled">*@
-                                                @Html.HiddenFor(model => model.age)
-                                                @Html.HiddenFor(model=>model.hiddenid)
-                                            </div>
-
                                             <div class="col-md-4 form-group">
                                                 <label class="cust-title">
                                                     Marital Status
@@ -705,15 +692,30 @@
 
                                                 @*@Html.ValidationMessageFor(Model => Model.personal.Maritalstatus, "", new { @class = "text-danger" })*@
                                                 @*<select id="maritalStatus" class="form-control" dataType="choice">
-                                                            <option value="None">None</option>
-                                                            <option value="Married">Married</option>
-                                                            <option value="Seperated">Seperated</option>
-                                                            <option value="Single" selected="selected">Single</option>
-                                                            <option value="Widowed">Widowed</option>
-                                                        </select>
-                                                    </div>*@
+                    <option value="None">None</option>
+                    <option value="Married">Married</option>
+                    <option value="Seperated">Seperated</option>
+                    <option value="Single" selected="selected">Single</option>
+                    <option value="Widowed">Widowed</option>
+                </select>
+            </div>*@
 
                                             </div>
+
+                                            <div class="col-md-4 form-group">
+                                                <label class="cust-title" style="display:none;">
+                                                    Age:
+                                                    <span class="reqfield">* </span>
+                                                </label>
+                                                @Html.HiddenFor(Model => Model.personal.Age, new { htmlAttributes = new { @class = "form-control", Placeholder = "Your Answer", type = "number", disabled = "disabled", required = "required" } })
+                                            
+                                                @Html.HiddenFor(model => model.age)
+                                                @Html.HiddenFor(model=>model.hiddenid)
+                                                @Html.HiddenFor(model => model.hiddenemail)
+                                                <input type="hidden" id="otp"/>
+                                            </div>
+
+                                            
                                         </div>
                                     </div>
 
@@ -757,7 +759,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 form-group">
-                                                    <label class="cust-title">What do you Known Collabera ?
+                                                    <label class="cust-title">What do you Know about Collabera ?
                                                         <span class="reqfield">*</span></label>
                                                     @Html.TextAreaFor(Model => Model.personal.WhatKnownAboutCollabera, new { @class = "form-control", @id = "txtKnow", rows = "3", required = "required" })
                                                     @*<textarea value="" id="txtKnow" class="form-control" rows="3"></textarea>*@
@@ -776,10 +778,12 @@
                                                     @*<textarea value="" id="txtStrengthAndWeakness" class="form-control" rows="3"></textarea>*@
                                                 </div>
                                                 <div class="col-md-12 form-group">
-                                                    <h3>UploadFile</h3>
+                                                    <h3>UploadFile <span class="reqfield">*</span></h3>
                                                     <span class="control-fileupload">
-                                                        <label for="file">Choose a file :</label>
-                                                        <input type="file" id="file_uploader" name="file_uploader">
+                                                        <label for="file">Add a Resume :
+                                                         </label>
+                                                        @Html.TextBoxFor(model=>model.file_uploader, new { @id= "file_uploader",@type="file", required = "required",@name= "file_uploader" })
+                                                        @*<input type="file" id="file_uploader" name="file_uploader">*@
                                                     </span>
                                                 </div>
                                             </div>
@@ -874,9 +878,9 @@
                                                                     <div class="custpos col-md-6 form-group">
                                                                         <label class="cust-title">From Date:</label>
                                                                         <!--<input type="text" style="width: 100%" class="form-control fromDate" id="fromDate1" placeholder="Your Answer" />-->
-                                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
-                                                                            @*@Html.EditorFor(Model => Model.employeer.fromdate, new { htmlAttributes = new { @class = "form-control fromDate", @id = "fromDate1", Placeholder = "Your Answer", type = "text" } })*@
-                                                                            <input type="text" class="form-control" id="fromDate1">
+                                                                        <div class="input-group date date-picker" data-date-format="yyyy-MM-dd">
+                                                                            @Html.EditorFor(Model => Model.fromdate, new { htmlAttributes = new { @class = "form-control fromDate", @id = "fromDate1", Placeholder = "Your Answer", type = "text" } })
+                                                                            @*<input type="text" class="form-control" id="fromDate1">*@
                                                                             <span class="input-group-btn">
                                                                                 <button class="btn default" type="button">
                                                                                     <i class="fa fa-calendar"></i>
@@ -894,9 +898,9 @@
                                                                             </span>
                                                                         </label>
                                                                         <!--<input type="text" style="width: 100%" class="form-control toDate" id="toDate1" placeholder="Your Answer" />-->
-                                                                        <div class="input-group date date-picker" data-date-format="dd-mm-yyyy">
-                                                                            @*@Html.EditorFor(Model => Model.employeer.todate, new { htmlAttributes = new { @class = "form-control", @id = "toDate1 toDate", Placeholder = "Your Answer", type = "text" } })*@
-                                                                            <input type="text" class="form-control" id="toDate1">
+                                                                        <div class="input-group date date-picker" data-date-format="yyyy-MM-dd">
+                                                                            @Html.EditorFor(Model => Model.todate, new { htmlAttributes = new { @class = "form-control", @id = "toDate1 toDate", Placeholder = "Your Answer", type = "text" } })
+                                                                            @*<input type="text" class="form-control" id="toDate1"*@
                                                                             <span class="input-group-btn">
                                                                                 <button class="btn default" type="button">
                                                                                     <i class="fa fa-calendar"></i>
@@ -959,7 +963,7 @@
                                                             <span class="reqfield">* </span>
                                                             <br />
                                                             <label class="radiolab">
-                                                                <input type="radio" name="declaration" value="true" id="declaration" required> I hereby declare that the above written particulars are true to
+                                                                <input type="radio" name="declaration" value="true" id="declaration" required > I hereby declare that the above written particulars are true to
                                                                 the best of my knowledge.
                                                             </label>
                                                         </label>
@@ -970,8 +974,9 @@
                                     </div>
                                 </div>
                                 <div class="panel-footer text-center">
-                                   
+                                    <input type="text" id="otptextbox" onchange="disbutton()" style="display:none;" placeholder="Enter OTP send on your EmailID" class="form-group">
                                     <button id="btnSubmit" type="submit" class="btn btn-primary">Submit</button>
+                                  
                                    
                                 </div>
                             </div>
@@ -996,7 +1001,7 @@
     <!--<script src="/sites/spin/IB/hr/SiteAssets/sweetalert.min.js"></script>-->
     <script src="~/APP Form/js/sweetalert.js" type="text/javascript"></script>
     <script src="~/APP Form/js/hover-dropdown.min.js" type="text/javascript"></script>
-    <script src="~/APP Form/js/back-to-top.js" type="text/javascript"></script>
+    @*<script src="~/APP Form/js/back-to-top.js" type="text/javascript"></script>*@
 
     <script src="~/APP Form/js/bootstrap-tagsinput.js" type="text/javascript"></script>
     <!-- JS Page Level -->
@@ -1009,14 +1014,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.0/jspdf.min.js"></script>
     <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
     <script src="~/APP Form/js/bootstrap-datepicker.min.js"></script>
+
+
     <script src="~/APP Form/js/CAF.js"></script>
     @*<script type="text/javascript" src="~/APP Form/js/CAF.js?ver=16"></script>*@
     <script id="errorTemplate" type="text/x-kendo-template">
         <script src="https://kendo.cdn.telerik.com/2018.2.620/js/kendo.all.min.js"></script>
     </script>
     <script>
+        function disbutton() {
+            debugger;
+            $('#btnSubmit').attr("disabled", false);
+
+        }
 
         $(document).ready(function () {
+            $(function () {
+                debugger;
+                $('#EmailId').val($('#hiddenemail').val())
+
+            });
             $('input[name=declaration]').change(function () {
                    debugger;
                    $('#btnSubmit').attr("disabled", false);
@@ -1026,11 +1043,53 @@
                 if (validate() == false) {
                     $('#btnSubmit').attr("disabled", true);
                     $("#declaration").prop("checked", false);
-
-
                     //SaveData();
                 }
+                else {
+                    debugger;
+                    if ($('#otp').val() == '') {
+                        debugger;
+                        $('#btnSubmit').attr("disabled", true);
+                        var emailid = $('#EmailId').val();
+                        $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("sendotp")',
+                            contentType: "application/json ",
+                            data: {emailid:emailid},
+                            datatype: "json",
+                            success: function (infodata) {
+                                
+                                $('#otp').val(infodata);
+                                $('#otptextbox').css('display', '');
+                                //var s = '<input type="text" id="otptextbox" onchange="disbutton()">';
+                                //document.getElementById("otptextboxdiv").innerHTML = s;
+                                $('#btnSubmit').attr("disabled", false);
+
+                            },
+                        });
+
+                    }
+                    else {
+                        debugger;
+                        var otp = $('#otp').val();
+                        var otpadded = $('#otptextbox').val()
+                        if (otp != otpadded) {
+                            swal({
+                                title: "",
+                                text: "Please enter correct OTP",
+                                type: "error"
+                            });
+                            $('#btnSubmit').attr("disabled", true);
+                        }
+                    }
+                }
             });
+          
+            //$("#otptextbox").change(function () {
+            //    debugger;
+            //    $('#btnSubmit').attr("disabled", false);
+
+            //});
 
             $(".date-picker").datepicker({
                 orientation: "right",

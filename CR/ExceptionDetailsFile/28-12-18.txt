@@ -46,3 +46,75 @@ User Host IP: ::1
 
 
 
+-----------Exception Details on  12/28/2018 7:54:44 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/28/2018 7:54:44 PM
+
+Error Line No : ine 413
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/Email
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/28/2018 7:55:00 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/28/2018 7:55:00 PM
+
+Error Line No : ine 311
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/28/2018 7:57:23 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/28/2018 7:57:23 PM
+
+Error Line No : ine 311
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+

@@ -557,8 +557,8 @@
     <div>
         <div class="nav navbar-nav navbar-right" @*style="margin-right:244px;"*@>
             <div style="margin-top:2%;margin-left: -32%;">
-                <h5 style="font-weight:bold;"><span style="color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-user" aria-hidden="true"></i></span> @Session["username"].ToString()<span style="color:#428bca;margin-left:2%;"><i class="fa fa-clock-o" aria-hidden="true"></i></span>@Session["Time"].ToString() <a href="/Home/logout" style="color: black;font-size: 14px;"><span style="font-size:15px; color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-lock" aria-hidden="true"></i></span>Logout</a></h5>
-                <a href="/Account/ResetPassword" style="color: black;font-size: 14px;font-weight:bold;"><span style="font-size:15px; color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-key" aria-hidden="true"></i></span>Reset Password</a>
+                <h5 style="font-weight:bold;"><span style="color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-user" aria-hidden="true"></i></span> @Session["username"].ToString()  <a href="/Account/ResetPassword" style="color: black;font-size: 14px;font-weight:bold;"><span style="font-size:15px; color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-key" aria-hidden="true"></i></span>Reset Password</a> <a href="/Home/logout" style="color: black;font-size: 14px;"><span style="font-size:15px; color:#428bca; margin-left:1%;display:inline-block;"><i class="fa fa-lock" aria-hidden="true"></i></span> Logout</a></h5>
+              
 
             </div>
         </div>
@@ -672,7 +672,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <input id="statusinfo" list="statusdata" name="statusdatas" placeholder="Change Candidate Status" style="border-color:1px solid #333333;">
+                        <input id="statusinfo" list="statusdata" name="statusdatas" placeholder="Change Candidate Status" style="border-color:1px solid #333333;margin-top:-2px;">
                         <input name="rid" type="hidden" id="rid" />
                         <datalist id="statusdata">
                             <option value="Pending">
@@ -711,7 +711,7 @@
 
         <div class="col-md-2" style="margin-left:-8%;">
 
-            <input id="searchstatus" list="searchstatusdata" name="statusdatas" placeholder=" Candidate Status" style="border-color:1px solid #333333;">
+            <input id="searchstatus" list="searchstatusdata" name="statusdatas" placeholder=" Candidate Status" style="border-color:1px solid #333333;height: 36px;margin-top: -2px;">
             <datalist id="searchstatusdata">
                 <option selected value="All">
                 <option value="Pending">
@@ -732,21 +732,21 @@
                                 <p class="card-text">
                                 <p class="card-text" style=" font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;">@Html.Encode(@item.FullName)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-o icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Email ID"></i>@Html.Encode(@item.EmailID)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-o icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Email ID" style="margin-left:9px;"></i>@Html.Encode(@item.EmailID)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-phone" aria-hidden="true" style="padding-right:35px;" data-toggle="tooltip" data-placement="top" title="Mobile No"></i>@Html.Encode(@item.Mobile)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-phone" aria-hidden="true" style="padding-right:35px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Mobile No"></i>@Html.Encode(@item.Mobile)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-handshake-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Position"></i>@Html.Encode(@item.Position)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-handshake-o" aria-hidden="true" style="padding-right:33px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Position"></i>@Html.Encode(@item.Position)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-open-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Mail Status"></i>Mail Status: @Html.Encode(@item.MailStatus)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-open-o" aria-hidden="true" style="padding-right:33px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Mail Status"></i>Mail Status: @Html.Encode(@item.MailStatus)</p>
                                 <hr style="margin-top:0px;" />
                                 </p>
                                 <div class="card-body" style="background-color:#009BDE;text-align:center;">
                                     <a href="#" data-toggle="modal" data-target="#status" class="card-link" data-book-id="@Html.Encode(@item.RID)" style=" font-family:Calibri;color:white;">Change Status</a>
                                   @if (@Html.Encode(@item.MailStatus) == "Submitted")
                                   {
-                                    <a href="/Home/download?id=@Html.Encode(@item.RID)" target="_blank" class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-download" aria-hidden="true" style="margin-left:98px;"></i></a>
-                                    <a href="/Home/viewdata?id=@Html.Encode(@item.RID)" target="_blank" class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+                                    <a href="/Home/download?id=@Html.Encode(@item.RID)" target="_blank" data-toggle="tooltip" title="Download Resume " class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-download" aria-hidden="true" style="margin-left:98px;"></i></a>
+                                    <a href="/Home/viewdata?id=@Html.Encode(@item.RID)" target="_blank"data-toggle="tooltip" title="View Form" class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-file-text" aria-hidden="true"></i></a>
               
                                   }
                                    
@@ -754,15 +754,15 @@
                             </div>
                             <div class="flip-card-back">
                                 <p class="card-text">
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:33px;"></i>Created Date: @Html.Encode(@item.CreatedDate)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:9px;margin-left:9px;"></i>Created Date: @Html.Encode(@item.CreatedDate)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:33px;"></i>Created By: @Html.Encode(@item.CreatedBy)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:16px;margin-left:9px;"></i>Created By: @Html.Encode(@item.CreatedBy)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-suitcase" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Type: @Html.Encode(@item.Type)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-suitcase" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Type: @Html.Encode(@item.Type)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar-check-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Response Date: @Html.Encode(@item.ResponseDate)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar-check-o" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Response Date: @Html.Encode(@item.ResponseDate)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-check-square-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Candidate Status"></i>Candidate Status:@Html.Encode(@item.CandidateStatus)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-check-square-o" aria-hidden="true" style="padding-right:9px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Candidate Status"></i>Candidate Status:@Html.Encode(@item.CandidateStatus)</p>
                                 <hr style="margin-top:0px;" />
                                 </p>
                                 <div class="card-body" style="background-color:#009BDE;text-align:center;">
@@ -785,36 +785,36 @@
                                 <p class="card-text">
                                 <p class="card-text" style=" font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;">@Html.Encode(@item.FullName)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-o icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Email ID"></i>@Html.Encode(@item.EmailID)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-o icon" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Email ID" style="margin-left:9px;padding-right:25px;"></i>@Html.Encode(@item.EmailID)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-phone" aria-hidden="true" style="padding-right:35px;" data-toggle="tooltip" data-placement="top" title="Mobile No"></i>@Html.Encode(@item.Mobile)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-phone" aria-hidden="true" style="padding-right:35px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Mobile No"></i>@Html.Encode(@item.Mobile)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-handshake-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Position"></i>@Html.Encode(@item.Position)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-handshake-o" aria-hidden="true" style="padding-right:33px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Position"></i>@Html.Encode(@item.Position)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-open-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Mail Status"></i>Mail Status: @Html.Encode(@item.MailStatus)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-envelope-open-o" aria-hidden="true" style="padding-right:33px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Mail Status"></i>Mail Status: @Html.Encode(@item.MailStatus)</p>
                                 <hr style="margin-top:0px;" />
                                 </p>
                                 <div class="card-body" style="background-color:#009BDE;text-align:center;">
                                     <a href="#" data-toggle="modal" data-target="#status" class="card-link" data-book-id="@Html.Encode(@item.RID)" style=" font-family:Calibri;color:white;">Change Status</a>
                                     @if (@Html.Encode(@item.MailStatus) == "Submitted")
                                     {
-                                        <a href="/Home/download?id=@Html.Encode(@item.RID)" target="_blank" class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-download" aria-hidden="true" style="margin-left:98px;"></i></a>
-                                        <a href="/Home/viewdata?id=@Html.Encode(@item.RID)" target="_blank" class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-file-text" aria-hidden="true"></i></a>
+                                        <a href="/Home/download?id=@Html.Encode(@item.RID)" target="_blank" data-toggle="tooltip" title="Download Resume " class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-download" aria-hidden="true" style="margin-left:98px;"></i></a>
+                                        <a href="/Home/viewdata?id=@Html.Encode(@item.RID)" target="_blank" data-toggle="tooltip" title="View Form"  class="card-link" data-book-id="@Html.Encode(@item.RID)" style="font-family:Calibri;color:white;"><i class="fa fa-file-text" aria-hidden="true"></i></a>
 
                                     }
                                 </div>
                             </div>
                             <div class="flip-card-back">
                                 <p class="card-text">
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:33px;"></i>Created Date: @Html.Encode(@item.CreatedDate)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created Date" style="padding-right:9px;margin-left:9px;"></i>Created Date: @Html.Encode(@item.CreatedDate)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:33px;"></i>Created By: @Html.Encode(@item.CreatedBy)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-user-plus" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Created By" style="padding-right:16px;margin-left:9px;"></i>Created By: @Html.Encode(@item.CreatedBy)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-suitcase" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Type: @Html.Encode(@item.Type)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-suitcase" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Type: @Html.Encode(@item.Type)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar-check-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Response Date: @Html.Encode(@item.ResponseDate)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-calendar-check-o" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Type"></i>Response Date: @Html.Encode(@item.ResponseDate)</p>
                                 <hr style="margin-top:0px;" />
-                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-check-square-o" aria-hidden="true" style="padding-right:33px;" data-toggle="tooltip" data-placement="top" title="Candidate Status"></i>Candidate Status:@Html.Encode(@item.CandidateStatus)</p>
+                                <p class="card-text" style=" font-family:Calibri"><i class="fa fa-check-square-o" aria-hidden="true" style="padding-right:16px;margin-left:9px;" data-toggle="tooltip" data-placement="top" title="Candidate Status"></i>Candidate Status:@Html.Encode(@item.CandidateStatus)</p>
                                 <hr style="margin-top:0px;" />
                                 </p>
                                 <div class="card-body" style="background-color:#009BDE;text-align:center;">
@@ -1040,25 +1040,25 @@
                         data += "<p class='card-text'>"
                         data += "<p class='card-text' style='font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;'>" + candidatedata[i].FullName + "</p>"
                         data += "<hr style='margin-top:0px;' />"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID'></i>" + candidatedata[i].EmailID + "</p>"
-                        data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
+                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID' style='margin-left:9px;'></i>" + candidatedata[i].EmailID + "</p>"
+                        data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
                         data += "<hr style='margin-top:0px;' /></p>"
                         data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
                         data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a> "
                         if (candidatedata[i].MailStatus == "Submitted") {
-                            data += "<a href='/Home/download?id="+candidatedata[i].RID  +"' target='_blank' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
-                            data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
+                            data += "<a href='/Home/download?id="+candidatedata[i].RID  +"' target='_blank'  data-toggle='tooltip' title='Download Resume ' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
+                            data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank'data-toggle='tooltip' title='View Form'  class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
 
                         }
                       data+="</div></div>"
                         data += "<div class='flip-card-back'><p class='card-text'>"
-                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
+                        data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;margin-left:9px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;margin-left:9px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
+                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
                         data += "<hr style='margin-top:0px;' /></p>"
                         data += "<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
                         data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a>"
@@ -1096,24 +1096,24 @@
                          data+= "<p class='card-text'>"
                          data+= "<p class='card-text' style=' font-family:Calibri;text-align:center;font-size:20px;font-weight:600;background-color:#009BDE;color:white;'>"+candidatedata[i].FullName+"</p>"
                          data+=   "<hr style='margin-top:0px;' />"
-                        data +=  "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID'></i>"+candidatedata[i].EmailID +"</p>"
-                        data +=" <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>"+candidatedata[i].Mobile+"</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
+                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-o icon' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Email ID' style='margin-left:9px;padding-right:16px;'></i>" + candidatedata[i].EmailID + "</p>"
+                         data += " <hr style='margin-top:0px;' /> <p class='card-text' style=' font-family:Calibri'><i class='fa fa-phone' aria-hidden='true' style='padding-right:35px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mobile No'></i>" + candidatedata[i].Mobile + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-handshake-o'  aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Position'></i>" + candidatedata[i].Position + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-envelope-open-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Mail Status'></i>Mail Status:" + candidatedata[i].MailStatus + "</p>"
                          data+="<hr style='margin-top:0px;' /></p>"
                          data+="<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
                          data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a> "
                          if (candidatedata[i].MailStatus == "Submitted") {
-                             data += "<a href='/Home/download?id=" + candidatedata[i].RID + "' target='_blank' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
-                             data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
+                             data += "<a href='/Home/download?id=" + candidatedata[i].RID + "' target='_blank'  data-toggle='tooltip' title='Download Resume ' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-download' aria-hidden='true' style='margin-left:98px;'></i></a> "
+                             data += "<a href='/Home/viewdata?id=" + candidatedata[i].RID + "' target='_blank'data-toggle='tooltip' title='View Form'  class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'><i class='fa fa-file-text' aria-hidden='true'></i></a>"
   }
                          data += "</div></div>"
                          data+="<div class='flip-card-back'><p class='card-text'>"
-                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
-                        data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
+                         data += "<p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created Date' style='padding-right:33px;margin-left:9px;'></i>Created Date:" + dateFormat(new Date(parseInt((candidatedata[i].CreatedDate).match(/\d+/)[0]))) + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-user-plus' aria-hidden='true' data-toggle='tooltip' data-placement='top' title='Created By' style='padding-right:33px;margin-left:9px;'></i>Created By:" + candidatedata[i].CreatedBy + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-suitcase' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Type:" + candidatedata[i].Type + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-calendar-check-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Type'></i>Response Date:" + candidatedata[i].ResponseDate + "</p>"
+                         data += "<hr style='margin-top:0px;' /><p class='card-text' style=' font-family:Calibri'><i class='fa fa-check-square-o' aria-hidden='true' style='padding-right:33px;margin-left:9px;' data-toggle='tooltip' data-placement='top' title='Candidate Status'></i>Candidate Status:" + candidatedata[i].CandidateStatus + "</p>"
                          data+="<hr style='margin-top:0px;' /></p>"
                          data+="<div class='card-body' style='background-color:#009BDE;text-align:center;'>"
                          data += "<a href='#' data-toggle='modal' data-target='#status' class='card-link'data-book-id=" + candidatedata[i].RID + " style=' font-family:Calibri;color:white;'>Change Status</a>"
@@ -1131,7 +1131,7 @@
             });
         });
         $("#savebtns").click(function () {
-            debugger;
+ 
 
             var rid = $("#rid").val();
             var status = $("#statusinfo").val();
@@ -1219,7 +1219,7 @@
                 var options = { "backdrop": "static", keyboard: true };
                 var info = "<div><b>Dear " + FirstName + LastName + "</b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>We are pleased to inform you that we are moving ahead with your candidature with Collabera.</b></div><div><b><br></b></div><div><b>Please help us with with your further details mentioned on below given link:</b></div><div><b><br></b></div><div>&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://172.20.30.147:8096/Home/New'>Click Here</a><b></b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>Please feel free to reach out to us on below details:</b></div><div><b><br></b></div><div><b>Email ID: hcv@collabera.com</b></div><div><b><br></b></div><div><b>Contact No: +0265 457896123/5789461323</b></div><div><b><br></b></div><div><b><br></b></div><div><b><br></b></div><div><b>Thanks &amp; Regards</b></div><div><b><br></b></div><div><b>COLLABERA</b></div>";
                 $('#To').val(EmailID);
-                $('#Subject').val("Test ");
+                $('#Subject').val("Application Form ");
                 $('#FirstName').val(FirstName);
                 $('#Position').val(Position);
                 $('#Mobile').val(Mobile);

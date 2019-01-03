@@ -1,0 +1,384 @@
+-----------Exception Details on  12/31/2018 11:06:26 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 11:06:26 AM
+
+Error Line No : ine 311
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 11:16:23 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 11:16:23 AM
+
+Error Line No : ine 311
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 12:51:24 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 12:51:24 PM
+
+Error Line No : ine 342
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 1:18:46 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 1:18:46 PM
+
+Error Line No : line 72
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/sendotp?emailid=garima.thakore%40collabera.com
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 1:27:11 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 1:27:11 PM
+
+Error Line No : line 72
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/sendotp?emailid=garima.thakore%40collabera.com
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 2:39:12 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 2:39:12 PM
+
+Error Line No : ine 342
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 2:42:31 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 2:42:31 PM
+
+Error Line No : erText)
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 2:50:17 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 2:50:17 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:05:57 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:05:57 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:11:46 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:11:46 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:14:10 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:14:10 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:17:46 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:17:46 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:23:30 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:23:30 PM
+
+Error Line No : line 73
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/sendotp?emailid=garima.thakore%40collabera.com
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:29:30 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:29:30 PM
+
+Error Line No : ine 152
+
+Error Message: DbEntityValidationException
+
+Exception Type: System.Data.Entity.Validation.DbEntityValidationException
+
+Error Location : Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 3:39:37 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 3:39:37 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  12/31/2018 4:02:10 PM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 12/31/2018 4:02:10 PM
+
+Error Line No : ine 343
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+

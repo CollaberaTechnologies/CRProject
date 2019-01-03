@@ -24,9 +24,9 @@ namespace CR.Models
         public long RID { get; set; }
         public string contactperson { get; set; }
         public decimal expsalary { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Availonboard { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Datetimetomeet { get; set; }
         public string Posdesire { get; set; }
         public string Preferloc { get; set; }
@@ -37,7 +37,7 @@ namespace CR.Models
         public string Mobile { get; set; }
         public string Phone_ { get; set; }
         public string Gender { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Dob { get; set; }
         public int Age { get; set; }
         public string Maritalstatus { get; set; }

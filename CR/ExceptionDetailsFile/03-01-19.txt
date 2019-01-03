@@ -1,0 +1,96 @@
+-----------Exception Details on  1/3/2019 10:36:04 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 1/3/2019 10:36:04 AM
+
+Error Line No : ine 576
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  1/3/2019 10:43:50 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 1/3/2019 10:43:50 AM
+
+Error Line No : ine 262
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/sendotp?emailid=garima.thakore%40collabera.com
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  1/3/2019 10:47:28 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 1/3/2019 10:47:28 AM
+
+Error Line No : ine 532
+
+Error Message: SmtpException
+
+Exception Type: System.Net.Mail.SmtpException
+
+Error Location : Service not available, closing transmission channel. The server response was: 4.3.2 Service not available
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
+-----------Exception Details on  1/3/2019 10:58:40 AM-----------------
+-------------------------------------------------------------------------------------
+
+
+
+Log Written Date: 1/3/2019 10:58:40 AM
+
+Error Line No : ine 580
+
+Error Message: NullReferenceException
+
+Exception Type: System.NullReferenceException
+
+Error Location : Object reference not set to an instance of an object.
+
+ Error Page Url: http://localhost:54783/Home/New
+
+User Host IP: ::1
+
+
+--------------------------------*End*------------------------------------------
+
+
+
